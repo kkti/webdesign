@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kontakt – FERRUM FORM (neoficiální návrh)</title>
+<style>body{margin:0;background:#fff}</style>
+</head>
+<body>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&display=swap");
+
+  #ff {
+    container-type: inline-size;
+    color-scheme: light;
+    --blue: #0d6af6;
+    --blue-deep: #0a3f9c;
+    --navy: #0b1e3d;
+    --ink: #142033;
+    --muted: #56627a;
+    --steel: #eef2f7;
+    --rule: #d5dce6;
+    --skew: -12deg;
+    --gutter: clamp(18px, 5cqw, 72px);
+    width: 100%;
+    overflow-x: clip;
+    color: var(--ink);
+    background: #fff;
+    font: 400 16px/1.6 "Archivo", system-ui, sans-serif;
+    font-stretch: 100%;
+  }
+  #ff *, #ff *::before, #ff *::after { box-sizing: border-box; }
+  #ff h1, #ff h2, #ff h3, #ff p, #ff figure, #ff ul, #ff ol, #ff dl, #ff dd { margin: 0; padding: 0; }
+  #ff ul, #ff ol { list-style: none; }
+  #ff a { color: inherit; }
+  #ff a:focus-visible, #ff button:focus-visible, #ff input:focus-visible, #ff summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  #ff .pad { padding-inline: var(--gutter); }
+  #ff .wrap { max-width: 1320px; margin-inline: auto; }
+  #ff h1, #ff h2 { font-style: italic; font-weight: 750; font-stretch: 112%; letter-spacing: -.02em; line-height: 1.02; color: var(--navy); }
+  #ff h2 { font-size: clamp(1.9rem, 3.9cqw, 3.1rem); }
+  #ff .intro { max-width: 58ch; margin-top: 14px; color: var(--muted); font-size: 1.04rem; }
+
+  /* šikmý výřez podle loga */
+  #ff .slant { overflow: hidden; transform: skewX(var(--skew)); background: linear-gradient(135deg, #e3e9f1, #c9d3e0); }
+  #ff .slant > img, #ff .slant > .ph { display: block; width: 100%; height: 100%; object-fit: cover; transform: skewX(calc(var(--skew) * -1)) scale(1.24); }
+  #ff .ph { display: grid; place-items: end start; padding: 14px 26%; color: #7b879b; font-size: .74rem; }
+
+  /* hlavička */
+  #ff .top { position: sticky; top: 0; z-index: 30; background: #ffffffee; backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+  #ff .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px; }
+  #ff .logo { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
+  #ff .logo svg { width: 46px; height: 34px; }
+  #ff .logo b { white-space: nowrap; font-style: italic; font-weight: 800; font-stretch: 118%; font-size: 1.18rem; letter-spacing: .01em; color: var(--navy); }
+  #ff .logo b span { font-weight: 500; color: var(--muted); font-size: .8em; }
+  #ff .nav { display: flex; align-items: center; gap: clamp(14px, 2.2cqw, 28px); }
+  #ff .nav a { white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: .92rem; font-weight: 550; }
+  #ff .nav a:hover { color: var(--blue); }
+  #ff .right { display: flex; align-items: center; gap: 16px; }
+  #ff .lang { display: flex; font-size: .8rem; }
+  #ff .lang a { display: inline-flex; align-items: center; justify-content: center; min-width: 30px; min-height: 44px; text-decoration: none; color: var(--muted); }
+  #ff .lang a[aria-current] { color: var(--ink); font-weight: 700; }
+  #ff .phone { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 700; color: var(--blue-deep); white-space: nowrap; }
+  #ff .menu { display: none; position: relative; }
+  #ff .menu summary { display: flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--rule); list-style: none; cursor: pointer; font-weight: 600; }
+  #ff .menu summary::-webkit-details-marker { display: none; }
+  #ff .menu nav { position: absolute; right: 0; top: calc(100% + 8px); display: grid; min-width: 230px; padding: 6px 16px; background: #fff; border: 1px solid var(--rule); box-shadow: 0 12px 30px #0b1e3d1f; }
+  #ff .menu nav a { display: flex; align-items: center; min-height: 46px; text-decoration: none; }
+  #ff .menu nav a + a { border-top: 1px solid var(--rule); }
+
+  /* úvod */
+  #ff .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); align-items: center; gap: 30px clamp(30px, 5cqw, 80px); padding-block: clamp(36px, 5cqw, 72px) clamp(40px, 6cqw, 88px); }
+  #ff h1 { font-size: clamp(2.5rem, 5.6cqw, 4.9rem); }
+  #ff h1 span { color: var(--blue); }
+  #ff .hero p.lead { margin-top: 22px; max-width: 44ch; font-size: clamp(1.02rem, 1.45cqw, 1.16rem); color: #34405a; }
+  #ff .hero .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; margin-top: 30px; }
+  #ff .btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 24px; background: var(--blue); color: #fff; text-decoration: none; font-weight: 700; transform: skewX(var(--skew)); }
+  #ff .btn > span { transform: skewX(calc(var(--skew) * -1)); }
+  #ff .btn:hover { background: var(--blue-deep); }
+  #ff .textlink { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; color: var(--blue-deep); text-underline-offset: 5px; }
+  #ff .hero .since { margin-top: 34px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--muted); font-size: .88rem; max-width: 44ch; }
+  #ff .hero-visual { position: relative; height: clamp(320px, 42cqw, 560px); margin-right: calc(var(--gutter) * -1); }
+  #ff .hero-visual .slant { position: absolute; inset: 0 0 0 8%; }
+  #ff .hero-visual .bar { position: absolute; transform: skewX(var(--skew)); }
+  #ff .hero-visual .b1 { left: 0; top: 10%; width: 5%; height: 62%; background: var(--blue); }
+  #ff .hero-visual .b2 { left: -5%; top: 34%; width: 3%; height: 46%; background: #6ea6fb; }
+
+  /* váhová škála */
+  #ff .scale { background: var(--steel); padding-block: clamp(44px, 5.5cqw, 76px); scroll-margin-top: 70px; }
+  #ff .scale-grid { display: grid; grid-template-columns: minmax(270px, 32%) minmax(0, 1fr); gap: 28px clamp(28px, 4cqw, 60px); align-items: start; }
+  #ff .scale h2 { font-size: clamp(1.7rem, 2.9cqw, 2.5rem); }
+  #ff .scale .intro { margin-top: 10px; font-size: .96rem; }
+  #ff .picker { display: grid; gap: 4px; margin-top: 22px; padding: 14px 16px 6px; background: #fff; border: 1px solid var(--rule); }
+  #ff .picker label { font-weight: 650; font-size: .84rem; color: var(--muted); }
+  #ff .picker .val { display: flex; align-items: baseline; gap: 8px; }
+  #ff .picker input[type=number] { width: 4.2em; padding: 2px 8px; border: 1px solid var(--rule); font: italic 750 1.9rem/1.1 "Archivo", sans-serif; font-stretch: 112%; color: var(--navy); background: #fff; }
+  #ff .picker .unit { font: italic 700 1.25rem/1 "Archivo", sans-serif; color: var(--muted); }
+  #ff .picker input[type=range] { width: 100%; height: 40px; accent-color: var(--blue); margin: 0; }
+  #ff .result { margin-top: 16px; font-size: 1rem; line-height: 1.5; min-height: 4.5em; }
+  #ff .result strong { color: var(--blue-deep); }
+  #ff .scale-note { margin-top: 10px; color: var(--muted); font-size: .82rem; }
+  #ff .machines { padding: 6px 18px 12px; background: #fff; border: 1px solid var(--rule); }
+  #ff .axis, #ff .row { display: grid; grid-template-columns: minmax(150px, 30%) minmax(0, 1fr); gap: 2px 18px; align-items: center; }
+  #ff .axis .ticks { position: relative; height: 26px; color: var(--muted); font-size: .72rem; }
+  #ff .axis .ticks span { position: absolute; bottom: 4px; translate: -50% 0; white-space: nowrap; }
+  #ff .axis .ticks span:first-child { translate: 0 0; }
+  #ff .axis .ticks span:last-child { translate: -100% 0; }
+  #ff .row { padding-block: 5px; border-top: 1px solid var(--rule); transition: opacity .3s; }
+  #ff .row .name { min-width: 0; font-weight: 650; font-size: .86rem; line-height: 1.25; }
+  #ff .row .name small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 400; font-size: .72rem; color: var(--muted); }
+  #ff .track { position: relative; height: 26px; }
+  #ff .track i { position: absolute; top: 0; bottom: 0; width: 1px; background: #e3e8ef; }
+  #ff .range { position: absolute; top: 4px; bottom: 4px; transform: skewX(var(--skew)); background: #c9dbf6; transition: background .3s; }
+  #ff .rl { position: absolute; top: 0; bottom: 0; display: grid; place-items: center; font-size: .7rem; font-weight: 700; color: var(--navy); white-space: nowrap; pointer-events: none; }
+  #ff .row.ind .range { background: #8fb6f2; }
+  #ff .row.fit .range { background: var(--blue); }
+  #ff .row.fit .rl { color: #fff; }
+  #ff .row:not(.fit) { opacity: .5; }
+  #ff .marker { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--navy); translate: -1px 0; pointer-events: none; z-index: 2; }
+  #ff .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); color: var(--muted); font-size: .74rem; }
+  #ff .legend > span { display: inline-flex; align-items: center; gap: 8px; margin-right: 14px; }
+  #ff .legend .li { width: 10px; height: 10px; transform: skewX(var(--skew)); }
+  #ff .legend .li.ind { background: #8fb6f2; }
+  #ff .legend .li.gas { background: #c9dbf6; }
+
+  /* výroba */
+  #ff .work { padding-block: clamp(56px, 8cqw, 112px); scroll-margin-top: 70px; }
+  #ff .strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4cqw, 18px); margin-top: clamp(30px, 4cqw, 50px); padding-inline: 2%; }
+  #ff .strip .slant { aspect-ratio: 4 / 5; }
+  #ff .step h3 { margin-top: 18px; font-size: 1.12rem; font-weight: 700; color: var(--navy); }
+  #ff .step p { margin-top: 6px; color: var(--muted); font-size: .92rem; }
+
+  /* sortiment */
+  #ff .range-sec { padding-block: clamp(56px, 8cqw, 112px); border-top: 1px solid var(--rule); scroll-margin-top: 70px; }
+  #ff .cat-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 36%); gap: 24px 60px; align-items: end; }
+  #ff .catimg { height: clamp(200px, 22cqw, 300px); }
+  #ff .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  #ff .filters button { min-height: 44px; padding: 0 16px; border: 1px solid var(--rule); background: #fff; color: var(--ink); font: 600 .9rem "Archivo", sans-serif; cursor: pointer; }
+  #ff .filters button[aria-pressed=true] { background: var(--navy); border-color: var(--navy); color: #fff; }
+  #ff .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 1px; margin-top: 18px; background: var(--rule); border: 1px solid var(--rule); }
+  #ff .catalog li { display: grid; grid-template-rows: 1fr auto; aspect-ratio: 1; padding: 10px; background: #fff; }
+  #ff .catalog li[hidden] { display: none; }
+  #ff .catalog img { align-self: center; justify-self: center; width: 100%; max-width: 104px; height: auto; mix-blend-mode: multiply; filter: grayscale(1) brightness(1.12) contrast(1.25); }
+  #ff .catalog small { color: var(--muted); font-size: .72rem; }
+  #ff .uses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: clamp(34px, 4.6cqw, 56px); }
+  #ff .uses div { padding: 14px 0; border-top: 1px solid var(--rule); }
+  #ff .uses dt { font-weight: 700; color: var(--navy); }
+  #ff .uses dd { margin-top: 2px; color: var(--muted); font-size: .94rem; }
+  #ff .forms { margin-top: 26px; color: var(--muted); font-size: .94rem; max-width: 80ch; }
+
+  /* technologie */
+  #ff .tech { background: var(--navy); color: #fff; padding-block: clamp(56px, 8cqw, 112px); scroll-margin-top: 70px; }
+  #ff .tech h2 { color: #fff; }
+  #ff .tech .intro { color: #c4d1e6; }
+  #ff .tech-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; margin-top: clamp(30px, 4cqw, 50px); }
+  #ff .tech-grid h3 { padding-bottom: 10px; margin-bottom: 4px; border-bottom: 2px solid var(--blue); font-size: 1rem; font-weight: 700; }
+  #ff .tech-grid li { padding: 7px 0; border-bottom: 1px solid #ffffff1f; color: #dbe4f2; font-size: .92rem; }
+
+  /* kvalita */
+  #ff .quality { padding-block: clamp(56px, 8cqw, 112px); scroll-margin-top: 70px; }
+  #ff .quality .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 36px clamp(30px, 5cqw, 80px); }
+  #ff .quality .qimg { height: clamp(220px, 24cqw, 320px); margin-top: 30px; }
+  #ff .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 24px; }
+  #ff .checks h3 { font-size: .95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  #ff .checks li { padding: 6px 0; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+  #ff .docs { display: grid; align-content: start; border-top: 2px solid var(--navy); }
+  #ff .doc { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 16px; min-height: 86px; padding: 12px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
+  #ff .doc img { width: 52px; height: 70px; object-fit: cover; object-position: top; border: 1px solid var(--rule); }
+  #ff .doc b { display: block; color: var(--navy); }
+  #ff .doc span { color: var(--muted); font-size: .86rem; }
+  #ff .doc em { font-style: normal; font-size: .8rem; font-weight: 700; color: var(--blue); }
+  #ff .doc:hover b { color: var(--blue); }
+
+  /* historie */
+  #ff .history { position: relative; padding-block: clamp(56px, 8cqw, 112px); background: var(--steel); }
+  #ff .history .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px clamp(30px, 5cqw, 80px); align-items: center; }
+  #ff .history .himg { height: clamp(240px, 30cqw, 420px); }
+  #ff .history p { margin-top: 16px; color: #34405a; max-width: 56ch; }
+  #ff .history p b { color: var(--navy); }
+
+  /* kontakt */
+  #ff .contact { padding-block: clamp(56px, 8cqw, 112px); scroll-margin-top: 70px; }
+  #ff .contact .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 30px 48px; }
+  #ff .contact h2 { grid-column: 1 / -1; }
+  #ff .contact h3 { font-size: .86rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+  #ff .contact a { text-decoration: none; }
+  #ff .contact a:hover { color: var(--blue); }
+  #ff .contact .big { display: inline-flex; min-height: 44px; align-items: center; font-style: italic; font-weight: 750; font-stretch: 110%; font-size: clamp(1.3rem, 2.3cqw, 1.8rem); color: var(--navy); }
+  #ff .contact li { padding: 4px 0; }
+  #ff .contact li a { display: inline-flex; min-height: 36px; align-items: center; }
+  #ff footer { padding-block: 26px; background: var(--navy); color: #a9b7cf; font-size: .82rem; }
+  #ff footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+
+  @container (max-width: 1180px) {
+    #ff .logo b span { display: none; }
+  }
+  @container (max-width: 1080px) {
+    #ff .nav, #ff .phone { display: none; }
+    #ff .menu { display: block; }
+  }
+  @container (max-width: 1000px) {
+    #ff .hero .wrap, #ff .cat-head, #ff .quality .wrap, #ff .history .wrap { grid-template-columns: 1fr; }
+    #ff .hero-visual { margin-right: 0; height: clamp(260px, 56cqw, 440px); }
+    #ff .strip, #ff .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; }
+    #ff .contact .wrap { grid-template-columns: 1fr 1fr; }
+  }
+  @container (max-width: 1000px) {
+    #ff .scale-grid { grid-template-columns: minmax(230px, 30%) minmax(0, 1fr); gap: 24px; }
+    #ff .axis, #ff .row { grid-template-columns: minmax(130px, 28%) minmax(0, 1fr); gap: 2px 12px; }
+  }
+  @container (max-width: 760px) {
+    #ff .scale-grid { grid-template-columns: 1fr; gap: 0; }
+    #ff .scale-side { display: contents; }
+    #ff .picker { position: sticky; top: 78px; z-index: 5; box-shadow: 0 10px 24px #0b1e3d1f; }
+    #ff .machines { margin-top: 18px; }
+  }
+  @container (max-width: 640px) {
+    #ff .lang { display: none; }
+    #ff .axis { grid-template-columns: 1fr; }
+    #ff .axis > span { display: none; }
+    #ff .row { grid-template-columns: 1fr; gap: 0; padding-block: 6px; }
+    #ff .axis .ticks span.minor { display: none; }
+    #ff .machines { padding-inline: 12px; }
+    #ff .strip { padding-inline: 4%; }
+    #ff .uses, #ff .checks, #ff .tech-grid, #ff .contact .wrap { grid-template-columns: 1fr; }
+    #ff .catalog { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #ff .hero-visual .b2 { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #ff .row, #ff .range { transition: none; }
+  }
+  /* ===== POHYB ===== */
+  /* průběžné (scroll) – proměnné nastavuje JS, výchozí stav = hotový */
+  #ff .slant > img { translate: 0 var(--y, 0px); }
+  #ff .hero-visual .b1 { translate: 0 calc(var(--hp, 0) * -90px); }
+  #ff .hero-visual .b2 { translate: 0 calc(var(--hp, 0) * -170px); }
+  #ff .hero-copy { translate: 0 calc(var(--hp, 0) * -40px); }
+  #ff .hero-visual .glow { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+    background: radial-gradient(34% 30% at calc(78% - var(--hp, 0) * 14%) calc(72% - var(--hp, 0) * 18%), #ff8a3a66, transparent 70%);
+    transform: skewX(calc(var(--skew) * -1)); animation: ff-breathe 6s ease-in-out infinite alternate; }
+  @keyframes ff-breathe { from { opacity: .55; } to { opacity: 1; } }
+  #ff .strip .slant { clip-path: polygon(0 0, calc(14% + var(--p, 1) * 86%) 0, calc(14% + var(--p, 1) * 86%) 100%, 0 100%); }
+  #ff .strip .slant > img { scale: calc(1.18 - var(--p, 1) * .18); }
+  #ff .range { scale: var(--p, 1) 1; transform-origin: left center; }
+  #ff .rl { opacity: calc(var(--p, 1) * 2 - 1); }
+  #ff .tech-grid h3 { position: relative; border-bottom-color: transparent; }
+  #ff .tech-grid h3::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--blue); scale: var(--p, 1) 1; transform-origin: left; }
+
+  /* jednorázový nástup – jen když je pohyb povolený (.motion) */
+  #ff.motion .rv { opacity: 0; translate: 0 26px; transition: opacity .7s ease, translate .9s cubic-bezier(.2,.75,.2,1); transition-delay: var(--d, 0s); }
+  #ff.motion .rv.in { opacity: 1; translate: 0 0; }
+  #ff.motion h2.rv { translate: 0 0; opacity: 1; clip-path: polygon(0 0, 0 0, -8% 100%, -8% 100%); transition: clip-path 1s cubic-bezier(.7,0,.2,1); }
+  #ff.motion h2.rv.in { clip-path: polygon(0 0, 112% 0, 104% 100%, -8% 100%); }
+  #ff.motion .catalog li.rv { translate: 0 14px; }
+
+  /* úvod při otevření */
+  #ff.motion .hero-visual .slant { clip-path: polygon(0 0, 10% 0, 10% 100%, 0 100%); }
+  #ff.motion .hero-visual .slant > img { scale: 1.12; }
+  #ff.motion .hero-visual .bar { opacity: 0; }
+  #ff.motion .hero-visual .b1 { transform: skewX(var(--skew)) translateX(-160%); }
+  #ff.motion .hero-visual .b2 { transform: skewX(var(--skew)) translateX(-260%); }
+  #ff.motion h1 { clip-path: polygon(0 0, 0 0, -8% 100%, -8% 100%); }
+  #ff.motion .hero-copy > :not(h1) { opacity: 0; translate: 0 18px; }
+  #ff.motion.go .hero-visual.show .slant { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transition: clip-path 1.3s cubic-bezier(.7,0,.15,1) .15s; }
+  #ff.motion.go .hero-visual.show .slant > img { scale: 1; transition: scale 2.2s cubic-bezier(.2,.7,.2,1) .15s; }
+  #ff.motion.go .hero-visual.show .bar { opacity: 1; transform: skewX(var(--skew)); transition: transform 1.1s cubic-bezier(.2,.75,.2,1), opacity .4s; }
+  #ff.motion.go .hero-visual.show .b1 { transition-delay: .55s; }
+  #ff.motion.go .hero-visual.show .b2 { transition-delay: .7s; }
+  #ff.motion.go h1 { clip-path: polygon(0 0, 112% 0, 104% 100%, -8% 100%); transition: clip-path 1.1s cubic-bezier(.7,0,.2,1) .1s; }
+  #ff.motion.go .hero-copy > :not(h1) { opacity: 1; translate: 0 0; transition: opacity .8s ease, translate .9s cubic-bezier(.2,.75,.2,1); }
+  #ff.motion.go .hero-copy > .lead { transition-delay: .55s; }
+  #ff.motion.go .hero-copy > .acts { transition-delay: .7s; }
+  #ff.motion.go .hero-copy > .since { transition-delay: .85s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ff .hero-visual .glow { animation: none; }
+  }
+  /* ===== podstránky ===== */
+  #ff .nav a[aria-current] { color: var(--blue); box-shadow: inset 0 -2px 0 var(--blue); }
+  #ff .hero.sub .wrap { padding-block: clamp(30px, 4cqw, 56px) clamp(40px, 5cqw, 72px); }
+  #ff .hero.sub h1 { font-size: clamp(2.3rem, 4.8cqw, 4.2rem); }
+  #ff .hero.sub .hero-visual { height: clamp(240px, 30cqw, 420px); }
+  #ff .blk { padding-block: clamp(48px, 7cqw, 96px); border-top: 1px solid var(--rule); scroll-margin-top: 70px; }
+  #ff .blk.tint { background: var(--steel); border-top: 0; }
+  #ff .blk h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  #ff .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px clamp(30px, 5cqw, 80px); align-items: start; }
+  #ff .two .pic { height: clamp(240px, 28cqw, 400px); }
+  #ff .cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 40px; margin-top: clamp(26px, 3.6cqw, 44px); }
+  #ff .lst li { padding: 9px 0; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; }
+  #ff .lst li b { color: var(--ink); font-weight: 650; }
+  #ff .prose p { margin-top: 16px; max-width: 62ch; color: #34405a; }
+  #ff .prose p b { color: var(--navy); }
+  #ff .spec { width: 100%; margin-top: clamp(26px, 3.6cqw, 44px); border-collapse: collapse; font-size: .94rem; }
+  #ff .spec th { padding: 0 16px 12px 0; text-align: left; font-weight: 500; color: var(--muted); }
+  #ff .spec td { padding: 14px 16px 14px 0; border-top: 1px solid var(--rule); vertical-align: top; }
+  #ff .spec td:first-child { font-weight: 700; color: var(--navy); }
+  #ff .spec td:last-child { text-align: right; white-space: nowrap; font-style: italic; font-weight: 750; font-stretch: 110%; color: var(--blue-deep); }
+  #ff .ask { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 40px; margin-top: clamp(40px, 5cqw, 64px); padding: 24px 0; border-top: 2px solid var(--navy); border-bottom: 1px solid var(--rule); }
+  #ff .ask p { max-width: 52ch; font-size: 1.05rem; }
+  #ff .ask div { display: flex; flex-wrap: wrap; gap: 4px 28px; }
+  #ff .ask a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-style: italic; font-weight: 750; font-stretch: 110%; font-size: 1.3rem; color: var(--navy); }
+  #ff .ask a:hover { color: var(--blue); }
+  #ff .maplink { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-weight: 650; color: var(--blue-deep); text-underline-offset: 5px; }
+  #ff footer .foot { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 24px 40px; padding-block: 14px 26px; border-bottom: 1px solid #ffffff22; margin-bottom: 18px; }
+  #ff footer .foot b { display: block; color: #fff; font-style: italic; font-weight: 750; font-stretch: 112%; font-size: 1.05rem; margin-bottom: 6px; }
+  #ff footer .foot a { display: inline-flex; align-items: center; min-height: 34px; color: #dbe4f2; text-decoration: none; }
+  #ff footer .foot a:hover { color: #fff; text-decoration: underline; }
+  #ff footer .foot ul li { line-height: 1.2; }
+  @container (max-width: 1000px) {
+    #ff .two, #ff .cols3 { grid-template-columns: 1fr; }
+    #ff footer .foot { grid-template-columns: 1fr 1fr; }
+    #ff footer .foot > div:first-child { grid-column: 1 / -1; }
+  }
+  @container (max-width: 640px) {
+    #ff .spec thead { display: none; }
+    #ff .spec tr { display: grid; grid-template-columns: 1fr auto; padding: 12px 0; border-top: 1px solid var(--rule); }
+    #ff .spec td { padding: 2px 0; border: 0; }
+    #ff .spec td:nth-child(2), #ff .spec td:nth-child(3) { grid-column: 1 / -1; color: var(--muted); font-size: .86rem; }
+    #ff .spec td:last-child { grid-row: 1; grid-column: 2; }
+    #ff .spec td.none { display: none; }
+    #ff footer .foot { grid-template-columns: 1fr; }
+  }
+  /* upozornění + poptávkový formulář */
+  #ff .notice { margin: 0; padding-block: 8px; background: #fff4d6; color: #5a4300; font-size: .8rem; line-height: 1.45; text-align: center; border-bottom: 1px solid #f0dc9c; }
+  #ff .notice a { color: inherit; font-weight: 700; }
+  #ff .form-wrap { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  #ff .form-demo { padding: 12px 14px; border-left: 3px solid var(--blue); background: #fff; font-size: .9rem; }
+  #ff .inq { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; padding: clamp(18px, 2.4cqw, 30px); background: #fff; border: 1px solid var(--rule); }
+  #ff .inq .full { grid-column: 1 / -1; }
+  #ff .inq .f { display: grid; gap: 6px; min-width: 0; }
+  #ff .inq label, #ff .inq legend { font-size: .86rem; font-weight: 650; color: var(--ink); }
+  #ff .inq input:not([type=checkbox]):not([type=file]), #ff .inq textarea { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #c3ccd9; background: #fff; color: var(--ink); font: 400 1rem/1.4 "Archivo", sans-serif; }
+  #ff .inq textarea { resize: vertical; }
+  #ff .inq input::placeholder { color: #8a95a8; }
+  #ff .inq input:focus-visible, #ff .inq textarea:focus-visible { outline: 2px solid var(--blue); outline-offset: 0; border-color: var(--blue); }
+  #ff .inq input[type=file] { font: inherit; font-size: .9rem; }
+  #ff .inq small { color: var(--muted); font-size: .78rem; }
+  #ff .inq fieldset.f { margin: 0; padding: 0; border: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0 14px; }
+  #ff .inq legend { margin-bottom: 4px; padding: 0; width: 100%; }
+  #ff .inq .chk { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; font-weight: 400; font-size: .92rem; }
+  #ff .inq .chk input { width: 18px; height: 18px; flex: none; accent-color: var(--blue); }
+  #ff .inq .send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+  #ff .inq .btn { border: 0; cursor: pointer; font: 700 1rem "Archivo", sans-serif; }
+  #ff .inq .req { color: var(--muted); font-size: .8rem; }
+  #ff .inq [aria-invalid=true] { border-color: #c62828 !important; outline-color: #c62828; }
+  #ff .inq .err { color: #b3261e; font-size: .78rem; }
+  #ff .inq .chk .err { margin-left: 6px; }
+  #ff .status { padding: 14px 16px; background: var(--steel); border-left: 3px solid var(--blue); font-size: .94rem; }
+  #ff .status a { font-weight: 700; color: var(--blue-deep); }
+  @container (max-width: 1000px) { #ff .form-wrap { grid-template-columns: 1fr; } }
+  @container (max-width: 640px) { #ff .inq { grid-template-columns: 1fr; } #ff .notice { text-align: left; } }
+</style>
+
+<div id="ff">
+  <p class="notice pad"><strong>Neoficiální návrh.</strong> Toto je ukázka redesignu webu ferrumform.cz, nejde o oficiální stránky společnosti FERRUM FORM, spol. s r.o. Oficiální web: <a href="https://ferrumform.cz/">ferrumform.cz</a></p>
+  <header class="top pad">
+    <div class="wrap">
+      <a class="logo" href="Navrh-FERRUM-FORM.html" aria-label="FERRUM FORM spol. s r.o. – úvod">
+        <svg viewBox="0 0 46 34" aria-hidden="true"><g transform="skewX(-12)">
+          <rect x="9" y="0" width="7" height="34" fill="#0d6af6"/><rect x="18" y="0" width="13" height="6" fill="#0d6af6"/><rect x="18" y="12" width="9" height="5" fill="#0d6af6"/>
+          <rect x="23" y="19" width="5" height="15" fill="#6ea6fb"/><rect x="30" y="19" width="14" height="5" fill="#6ea6fb"/><rect x="30" y="27" width="9" height="4" fill="#6ea6fb"/>
+        </g></svg>
+        <b>FERRUM FORM <span>spol. s r.o.</span></b>
+      </a>
+      <nav class="nav" aria-label="Hlavní menu">
+        <a href="Navrh-FERRUM-FORM-sortiment.html">Výkovky</a>
+        <a href="Navrh-FERRUM-FORM-moznosti.html">Výrobní možnosti</a>
+        <a href="Navrh-FERRUM-FORM-o-firme.html">O firmě</a>
+        <a href="Navrh-FERRUM-FORM-kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+      <div class="right">
+        <div class="lang" aria-label="Jazyk">
+          <a href="https://ferrumform.cz/kontakt.htm" aria-current="true">CZ</a>
+          <a href="https://ferrumform.cz/index_en.htm" lang="en">EN</a>
+          <a href="https://ferrumform.cz/index_de.htm" lang="de">DE</a>
+        </div>
+        <a class="phone" href="tel:+420554213735">554 213 735</a>
+        <details class="menu">
+          <summary>Menu</summary>
+          <nav aria-label="Mobilní menu">
+            <a href="Navrh-FERRUM-FORM.html">Úvod</a>
+            <a href="Navrh-FERRUM-FORM-sortiment.html">Výkovky</a>
+            <a href="Navrh-FERRUM-FORM-moznosti.html">Výrobní možnosti</a>
+            <a href="Navrh-FERRUM-FORM-o-firme.html">O firmě</a>
+            <a href="Navrh-FERRUM-FORM-kontakt.html" aria-current="page">Kontakt</a>
+            <a href="tel:+420554213735">+420 554 213 735</a>
+            <a href="https://ferrumform.cz/index_en.htm" lang="en">English</a>
+            <a href="https://ferrumform.cz/index_de.htm" lang="de">Deutsch</a>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+  <section class="hero sub pad" aria-labelledby="ff-h1">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 id="ff-h1">Kontakt</h1>
+        <p class="lead">Poptávky, výkresy a dotazy k výrobě posílejte na info@ferrumform.cz, nebo volejte obchodní úsek.</p>
+        <div class="acts"><a class="btn" href="#poptavka"><span>Vyplnit poptávku</span></a><a class="textlink" href="tel:+420554213735">+420 554 213 735</a></div>
+      </div>
+      <div class="hero-visual">
+        <span class="bar b2" aria-hidden="true"></span>
+        <span class="bar b1" aria-hidden="true"></span>
+        <figure class="slant"><img src="media/ferrum/kovarna.jpg" alt="Areál kovárny v Malé Morávce s vjezdem a potokem (ilustrační)" style="object-position:30% 50%" onerror="this.outerHTML='&lt;span class=ph&gt;kovarna.jpg&lt;/span&gt;'"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact pad" aria-labelledby="ff-contact">
+    <div class="wrap">
+      <h2 id="ff-contact">FERRUM FORM, spol. s r.o.</h2>
+      <div>
+        <h3>E-mail</h3>
+        <a class="big" href="mailto:info@ferrumform.cz">info@ferrumform.cz</a>
+        <h3 style="margin-top:22px">Obchodní úsek</h3>
+        <a class="big" href="tel:+420554213735">+420 554 213 735</a>
+      </div>
+      <div>
+        <h3>Další telefony</h3>
+        <ul>
+          <li><a href="tel:+420554213734">+420 554 213 734</a></li>
+          <li><a href="tel:+420777866914">+420 777 866 914</a> – mobil</li>
+          <li>Fax +420 554 273 224</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Adresa</h3>
+        <p>FERRUM FORM, spol. s r.o.<br>Kovárna Malá Morávka<br>793 36 Malá Morávka 13</p>
+        <a class="maplink" href="https://mapy.cz/?q=Mal%C3%A1%20Mor%C3%A1vka%2013">Zobrazit na mapě</a>
+        <p style="margin-top:14px">IČ 47153806<br>DIČ CZ47153806</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk tint pad" id="poptavka" aria-labelledby="ff-popt">
+    <div class="wrap two form-wrap">
+      <div class="prose">
+        <h2 id="ff-popt">Poptávka výkovku</h2>
+        <p class="ra">Popište díl a přiložte výkres. Zakázku zpracuje naše konstrukční oddělení a nářadí vyrobí vlastní nástrojárna.</p>
+        <p class="ra">První dodávky jsou podle složitosti tvaru možné do 1 až 3 měsíců od schválení výkresové dokumentace a smlouvy. Balení a způsob přepravy domluvíme.</p>
+        <p class="ra"><a class="textlink" href="Navrh-FERRUM-FORM-moznosti.html#hmotnost">Ověřte, na čem se váš díl bude kovat</a></p>
+        <p class="form-demo ra">V tomto návrhu formulář není napojený a nic neodesílá. Po vyplnění můžete poptávku poslat e-mailem.</p>
+      </div>
+      <form class="inq" id="ff-form" novalidate>
+        <div class="f"><label for="f-name">Jméno a příjmení *</label><input id="f-name" name="Jméno" autocomplete="name" required></div>
+        <div class="f"><label for="f-company">Firma</label><input id="f-company" name="Firma" autocomplete="organization"></div>
+        <div class="f"><label for="f-mail">E-mail *</label><input id="f-mail" name="E-mail" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="f-tel">Telefon</label><input id="f-tel" name="Telefon" type="tel" autocomplete="tel"></div>
+        <div class="f full"><label for="f-part">Díl / název výkovku *</label><input id="f-part" name="Díl" placeholder="např. hák s okem, kyvné rameno, krková příruba" required></div>
+        <div class="f"><label for="f-kg">Hmotnost výkovku (kg)</label><input id="f-kg" name="Hmotnost (kg)" inputmode="decimal" placeholder="0,1 – 12"></div>
+        <div class="f"><label for="f-qty">Roční množství (ks)</label><input id="f-qty" name="Roční množství (ks)" inputmode="numeric"></div>
+        <div class="f full"><label for="f-mat">Materiál / třída oceli</label><input id="f-mat" name="Materiál" placeholder="ocel tříd ČSN 11 až 17"></div>
+        <fieldset class="f full"><legend>Požadované úpravy</legend>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="žíhání na měkko"> žíhání na měkko</label>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="normalizační žíhání"> normalizační žíhání</label>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="zušlechtění"> zušlechtění</label>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="tryskání"> tryskání</label>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="rovnání"> rovnání</label>
+          <label class="chk"><input type="checkbox" name="Úpravy" value="kontrola trhlinek TIEDE"> kontrola trhlinek</label>
+        </fieldset>
+        <div class="f full"><label for="f-file">Výkres</label><input id="f-file" name="Výkres" type="file" multiple accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.jpg,.png"><small>PDF, DWG, DXF, STEP nebo obrázek</small></div>
+        <div class="f full"><label for="f-msg">Zpráva</label><textarea id="f-msg" name="Zpráva" rows="4"></textarea></div>
+        <label class="chk full"><input type="checkbox" id="f-gdpr" required> Souhlasím se zpracováním osobních údajů pro vyřízení poptávky. *</label>
+        <div class="full send"><button class="btn" type="submit"><span>Odeslat poptávku</span></button><span class="req">* povinné údaje</span></div>
+        <div class="full status" id="ff-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="pad"><div class="wrap" style="display:block">
+    <div class="foot">
+      <div><b>FERRUM FORM, spol. s r.o.</b>Kovárna Malá Morávka · 793 36 Malá Morávka 13<br>IČ 47153806 · DIČ CZ47153806</div>
+      <ul>
+        <li><a href="Navrh-FERRUM-FORM-sortiment.html">Výkovky</a></li>
+        <li><a href="Navrh-FERRUM-FORM-moznosti.html">Výrobní možnosti</a></li>
+        <li><a href="Navrh-FERRUM-FORM-o-firme.html">O firmě</a></li>
+        <li><a href="Navrh-FERRUM-FORM-kontakt.html">Kontakt</a></li>
+      </ul>
+      <ul>
+        <li><a href="mailto:info@ferrumform.cz">info@ferrumform.cz</a></li>
+        <li><a href="tel:+420554213735">+420 554 213 735</a></li>
+        <li><a href="tel:+420777866914">+420 777 866 914</a></li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px"><span>© FERRUM FORM, spol. s r.o.</span><span>Neoficiální návrh redesignu – nejde o oficiální web společnosti FERRUM FORM, spol. s r.o. Fotografie jsou ilustrační.</span></div>
+  </div></footer>
+</div>
+
+<script>
+(() => {
+  const root = document.getElementById('ff');
+  const MIN = 0.1, MAX = 12, L0 = Math.log(MIN), L1 = Math.log(MAX);
+  const pos = w => (Math.log(w) - L0) / (L1 - L0) * 100;
+  const fmt = w => w.toLocaleString('cs-CZ', { maximumFractionDigits: 2 });
+  const machines = [
+    { n: 'Vřetenový lis LV 500 t', d: 'plynová komorová pec · předkovací buchar CVK', a: 0.10, b: 0.5, ind: false },
+    { n: 'Protiběžný buchar KHZ 4', d: '40 kJ · plynová komorová pec', a: 0.15, b: 1.5, ind: false },
+    { n: 'Klikový lis LZK 1000 t', d: '10 MN · indukční ohřev ISOK 100, 290 kg/h', a: 0.20, b: 1.2, ind: true },
+    { n: 'Vřetenový lis LV 700 t', d: 'plynová komorová pec · předkovací buchar M4132', a: 0.60, b: 3.5, ind: false },
+    { n: 'Klikový lis LKM 1600 t', d: '16 MN · indukční ohřev ITO 250, 480 kg/h', a: 1.20, b: 3.5, ind: true },
+    { n: 'Klikový lis LKM 1600 t', d: '16 MN · indukční ohřev IMES, 800 kg/h', a: 1.50, b: 4.5, ind: true },
+    { n: 'Vřetenový lis LF 36/100 – 1000 t', d: 'plynová komorová pec · předkovací buchar M4132', a: 1.50, b: 7.0, ind: false },
+    { n: 'Protiběžný buchar KHZ 8', d: '80 kJ · indukční ohřev ITO 400, 800 kg/h', a: 2.0, b: 12.0, ind: true }
+  ];
+  const rowsEl = root.querySelector('#ff-rows');
+  if (rowsEl) {
+  const ticks = root.querySelector('#ff-ticks');
+  [0.1, 0.2, 0.5, 1, 2, 5, 12].forEach(t => { const s = document.createElement('span'); s.style.left = pos(t) + '%'; if (t === 0.2 || t === 5) s.className = 'minor'; s.textContent = fmt(t) + ' kg'; ticks.append(s); });
+  const grid = [0.1, 0.2, 0.5, 1, 2, 5, 12].map(t => `<i style="left:${pos(t)}%"></i>`).join('');
+  const rows = machines.map(m => {
+    const r = document.createElement('div'); r.className = 'row' + (m.ind ? ' ind' : '');
+    r.innerHTML = `<div class="name">${m.n}<small>${m.d}</small></div><div class="track">${grid}<div class="range" style="left:${pos(m.a)}%;width:${pos(m.b) - pos(m.a)}%"></div><span class="rl" style="left:${pos(m.a)}%;width:${pos(m.b) - pos(m.a)}%">${fmt(m.a)}–${fmt(m.b)} kg</span><div class="marker"></div></div>`;
+    rowsEl.append(r); return r;
+  });
+  const num = root.querySelector('#ff-kg'), slider = root.querySelector('#ff-slider'), out = root.querySelector('#ff-result');
+  const update = (w, from) => {
+    w = Math.min(MAX, Math.max(MIN, w || MIN));
+    if (from !== 'num') num.value = w < 1 ? w.toFixed(2).replace(/0$/, '') : w.toFixed(1);
+    if (from !== 'slider') slider.value = Math.round(pos(w) * 10);
+    slider.setAttribute('aria-valuetext', fmt(w) + ' kg');
+    const fit = machines.filter((m, i) => { const ok = w >= m.a && w <= m.b; rows[i].classList.toggle('fit', ok); rows[i].querySelector('.marker').style.left = pos(w) + '%'; return ok; });
+    const ind = fit.some(m => m.ind), gas = fit.some(m => !m.ind);
+    const series = [ind && '5 000 – 70 000 ks/rok s indukčním ohřevem', gas && '300 – 5 000 ks/rok s ohřevem v plynové peci'].filter(Boolean).join(', ');
+    const word = n => n === 1 ? 'stroji' : 'strojích';
+    out.innerHTML = fit.length
+      ? `Výkovek <strong>${fmt(w)} kg</strong> můžeme kovat na <strong>${fit.length} ${word(fit.length)}</strong>. Série ${series}. <a class="textlink" href="Navrh-FERRUM-FORM-kontakt.html?kg=${encodeURIComponent(fmt(w))}#poptavka">Poptat díl ${fmt(w)} kg</a>`
+      : `Pro <strong>${fmt(w)} kg</strong> nemáme vhodný agregát – zavolejte nám, poradíme.`;
+  };
+  slider.addEventListener('input', () => update(Math.exp(L0 + slider.value / 1000 * (L1 - L0)), 'slider'));
+  num.addEventListener('input', () => { const v = parseFloat(String(num.value).replace(',', '.')); if (v) update(v, 'num'); });
+  num.addEventListener('change', () => update(parseFloat(String(num.value).replace(',', '.')), null));
+  update(2, null);
+  }
+
+  const cat = root.querySelector('#ff-catalog');
+  if (cat) {
+  const groups = [['exc', 'excentricke', 9, 'Excentrický lis'], ['fri', 'frikcni', 9, 'Frikční lis'], ['buc', 'buchary', 5, 'Buchar']];
+  groups.forEach(([k, f, n, label]) => { for (let i = 1; i <= n; i++) { const li = document.createElement('li'); li.dataset.g = k; li.innerHTML = `<img src="media/original/${f}-0${i}.jpg" alt="Výkovek – ${label.toLowerCase()}" loading="lazy"><small>${label}</small>`; cat.append(li); } });
+  root.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    root.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    cat.querySelectorAll('li').forEach(li => li.hidden = b.dataset.f !== 'all' && li.dataset.g !== b.dataset.f);
+  }));
+  }
+  root.querySelectorAll('.menu nav a').forEach(a => a.addEventListener('click', () => a.closest('details').open = false));
+  /* ===== POHYB ===== */
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!reduce.matches && 'IntersectionObserver' in window) {
+    root.classList.add('motion');
+    // jednorázový nástup
+    const groups = [
+      ['h2', 0], ['.intro', .12], ['.picker', .15], ['.uses > div', .08], ['.forms', 0], ['.filters', 0],
+      ['.doc', .08], ['.checks > div', .1], ['.history p', .1], ['.contact .wrap > div', .1], ['.tech-grid > div', .08], ['.catalog li', .03], ['.step h3, .step p', .06], ['.ra', .08]
+    ];
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -6% 0px' });
+    groups.forEach(([sel, step]) => {
+      const els = [...root.querySelectorAll(sel)].filter(el => !el.closest('.hero'));
+      let last = null, i = 0;
+      els.forEach(el => { const par = el.parentElement; if (par !== last) { i = 0; last = par; } el.style.setProperty('--d', Math.min(i++ * step, .6) + 's'); el.classList.add('rv'); io.observe(el); });
+    });
+    root.offsetWidth; setTimeout(() => root.classList.add('go'), 50);
+    const hv = root.querySelector('.hero-visual');
+    const hio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { hv.classList.add('show'); hio.disconnect(); } }), { threshold: .25 });
+    if (hv) hio.observe(hv);
+
+    // průběžné efekty vázané na scroll (oba směry)
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const hero = root.querySelector('.hero');
+    const parallax = [...root.querySelectorAll('.slant > img')];
+    const opens = [...root.querySelectorAll('.strip .step')];
+    const rowsAll = [...root.querySelectorAll('#ff-rows .row')];
+    const techH = [...root.querySelectorAll('.tech-grid h3')];
+    const prog = (el, start = 1, end = .5) => { const r = el.getBoundingClientRect(), vh = innerHeight; return clamp((vh * start - r.top) / (vh * (start - end))); };
+    let ticking = false;
+    const frame = () => {
+      ticking = false;
+      const vh = innerHeight;
+      const hr = hero.getBoundingClientRect();
+      hero.style.setProperty('--hp', clamp(-hr.top / hr.height).toFixed(3));
+      parallax.forEach(img => {
+        const r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        const c = (r.top + r.height / 2 - vh / 2) / vh;
+        img.style.setProperty('--y', (c * -0.09 * r.height).toFixed(1) + 'px');
+      });
+      opens.forEach((st, i) => st.style.setProperty('--p', prog(st, 1 - i * .03, .45 - i * .03).toFixed(3)));
+      rowsAll.forEach((row, i) => row.style.setProperty('--p', prog(row, .98, .7).toFixed(3)));
+      techH.forEach((h, i) => h.style.setProperty('--p', prog(h, .95 - i * .04, .6 - i * .04).toFixed(3)));
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    frame();
+  }
+})();
+</script>
+<script>
+(() => {
+  const f = document.getElementById('ff-form'); if (!f) return;
+  const st = document.getElementById('ff-status');
+  const kg = new URLSearchParams(location.search).get('kg');
+  if (kg) f.querySelector('#f-kg').value = kg;
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    f.querySelectorAll('.err').forEach(x => x.remove());
+    let first = null;
+    f.querySelectorAll('[required]').forEach(el => {
+      const bad = el.type === 'checkbox' ? !el.checked : (!el.value.trim() || !el.checkValidity());
+      el.setAttribute('aria-invalid', bad);
+      if (!bad) return;
+      const m = document.createElement('span'); m.className = 'err';
+      m.textContent = el.type === 'checkbox' ? 'Potvrďte prosím souhlas.' : (el.type === 'email' && el.value ? 'Zadejte platný e-mail.' : 'Vyplňte prosím.');
+      (el.closest('.f') || el.closest('.chk')).append(m);
+      first = first || el;
+    });
+    if (first) { first.focus(); return; }
+    const data = new FormData(f), lines = [], seen = new Set();
+    for (const [k] of data) {
+      if (seen.has(k) || k === 'Výkres') continue; seen.add(k);
+      const v = data.getAll(k).filter(Boolean).join(', ');
+      if (v) lines.push(k + ': ' + v);
+    }
+    const files = [...f.querySelector('#f-file').files].map(x => x.name);
+    if (files.length) lines.push('Výkres (přiložte k e-mailu): ' + files.join(', '));
+    const href = 'mailto:info@ferrumform.cz?subject=' + encodeURIComponent('Poptávka výkovku – ' + (data.get('Díl') || '')) + '&body=' + encodeURIComponent(lines.join('\n'));
+    st.hidden = false;
+    st.innerHTML = '<strong>Formulář je v tomto návrhu jen ukázka a nic neodeslal.</strong> Poptávku můžete <a href="' + href + '">poslat e-mailem</a> – text se předvyplní, výkres přiložte ručně.';
+    st.focus();
+  });
+})();
+</script>
+</body>
+</html>
