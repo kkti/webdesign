@@ -649,7 +649,8 @@ body{margin:0;background:#f2f2f0}
     function scrollP(){
       if(!V) return 0;
       if(V.free){var r=pk.getBoundingClientRect(),vh=window.innerHeight;return cl((vh*.9-r.top)/(vh*.6));}
-      return cl(-vrs.getBoundingClientRect().top/V.dist);
+      // přichycení začíná pod hlavičkou: p=0 když sekce dosedne pod hlavičku, p=1 přesně na konci přichycení
+      return cl((hh()-vrs.getBoundingClientRect().top)/V.dist);
     }
     mVrs=function(){
       vrs.classList.add('on');
@@ -663,13 +664,13 @@ body{margin:0;background:#f2f2f0}
     uVrs=function(){
       if(!V||vTw||fin) return;
       var p=scrollP(); if(p>VP){VP=p;drawVrs();}
-      vrs.classList.toggle('done',VP>.9);
-      // odlepit až když je sekce mimo obrazovku – posun se srovná okamžitě a není vidět (žádné poskočení)
+      vrs.classList.toggle('done',VP>=.999);
+      // odlepit hned po položení poslední vrstvy; pozice se srovná okamžitě (obsah zůstane na místě) – posun se srovná okamžitě a není vidět (žádné poskočení)
       if(VP>=.999){
         var rr=vrs.getBoundingClientRect();
-        if(!vrs.classList.contains('stk')||rr.bottom<0||rr.top>window.innerHeight){
+        {
           fin=true;
-          if(vrs.classList.contains('stk')){var above=rr.bottom<0,nx=vrs.nextElementSibling||vrs,y0=nx.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=nx.getBoundingClientRect().top-y0;if(above&&dy)window.scrollTo({top:window.scrollY+dy,behavior:'instant'});}
+          if(vrs.classList.contains('stk')){var above=rr.top<0,nx=vrs.nextElementSibling||vrs,y0=nx.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=nx.getBoundingClientRect().top-y0;if(above&&dy)window.scrollTo({top:window.scrollY+dy,behavior:'instant'});}
           V={free:true};
         }
       }
@@ -688,7 +689,7 @@ body{margin:0;background:#f2f2f0}
       var p=VP, act=0, hw=1, ho=0;
       pk.style.setProperty('--p',p.toFixed(3));
       [0,1,2].forEach(function(i){
-        var w=ease(cl((p-.06-i*.3)/.24)), a=(w*140-40).toFixed(2)+'%', b=(w*140).toFixed(2)+'%',
+        var w=ease(cl((p-i/3)*3)), a=(w*140-40).toFixed(2)+'%', b=(w*140).toFixed(2)+'%',
             m='linear-gradient(180deg,#000 '+a+',transparent '+b+')';
         frs[i].style.webkitMaskImage=m; frs[i].style.maskImage=m;
         tags[i].style.setProperty('--t',cl((w-.8)/.2).toFixed(3));
