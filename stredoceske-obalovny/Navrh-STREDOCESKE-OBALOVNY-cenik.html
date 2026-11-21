@@ -873,10 +873,14 @@ body{margin:0;background:#f2f2f0}
       if(!V||vTw||fin) return;
       var p=scrollP(); if(p>VP){VP=p;drawVrs();}
       vrs.classList.toggle('done',VP>.9);
+      // odlepit až když je sekce mimo obrazovku – posun se srovná okamžitě a není vidět (žádné poskočení)
       if(VP>=.999){
-        fin=true;
-        if(vrs.classList.contains('stk')){var y0=pk.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=pk.getBoundingClientRect().top-y0;if(dy)window.scrollBy(0,dy);}
-        V={free:true};
+        var rr=vrs.getBoundingClientRect();
+        if(!vrs.classList.contains('stk')||rr.bottom<0||rr.top>window.innerHeight){
+          fin=true;
+          if(vrs.classList.contains('stk')){var nx=vrs.nextElementSibling||vrs,y0=nx.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=nx.getBoundingClientRect().top-y0;if(dy)window.scrollTo({top:window.scrollY+dy,behavior:'instant'});}
+          V={free:true};
+        }
       }
     };
     // ↻ vrátí vrstvy na prázdnou fotku a sekci znovu přichytí – pokládka jede znovu podle scrollu
