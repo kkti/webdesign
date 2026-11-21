@@ -251,7 +251,7 @@ body{margin:0;background:#f2f2f0}
 #sco.motion .intro:is(.on,.lite).pre .ksh,#sco.motion .intro:is(.on,.lite).pre .pinlab{opacity:0}
 #sco.motion .intro:is(.on,.lite).pre .kin{opacity:0;transform:scale(1.1)}
 #sco.motion .intro:is(.on,.lite).pre .pin-in{opacity:0;transform:scale(.3)}
-#sco.motion .intro:is(.on,.lite).pre .card>*{opacity:0;transform:translateY(22px)}
+#sco.motion .intro:is(.on,.lite).pre-t .card>*{opacity:0;transform:translateY(22px)}
 
 /* ---------- vozovka v řezu ---------- */
 #sco .vrs{background:var(--paper);border-top:1px solid var(--line)}
@@ -278,9 +278,9 @@ body{margin:0;background:#f2f2f0}
 #sco.motion .vrs.on.done .pk-re{opacity:1;transform:none}
 #sco .pk-re:hover{background:#fff}
 #sco .rez-note{margin-top:10px;font-size:13px;color:var(--mute)}
-#sco.motion .vrs.on{height:calc(100svh - var(--hh) + 110vh)}
-#sco.motion .vrs.on .vr-stage{position:sticky;top:var(--hh);height:calc(100svh - var(--hh));display:flex;align-items:center;padding:0}
-#sco.motion .vrs.on .vr-grid{width:100%}
+#sco.motion .vrs.on.stk{height:calc(100svh - var(--hh) + 110vh)}
+#sco.motion .vrs.on.stk .vr-stage{position:sticky;top:var(--hh);height:calc(100svh - var(--hh));display:flex;align-items:center;padding:0}
+#sco.motion .vrs.on.stk .vr-grid{width:100%}
 #sco.motion .vrs.on .vr-list li{opacity:calc(.35 + var(--e,1) * .65)}
 #sco.motion .vrs.on .vr-list li.cur{border-left-color:var(--red)}
 
@@ -618,8 +618,8 @@ body{margin:0;background:#f2f2f0}
     var stage=intro.querySelector('.stage'), svg=intro.querySelector('.kraj'),
         slot=intro.querySelector('.slot'), card=intro.querySelector('.card'), img=svg.querySelector('.ki'), kcg=svg.querySelector('.kc'),
         shapes=svg.querySelectorAll('[data-shape]'), pin=svg.querySelector('.pin'), ksh=svg.querySelector('.ksh'), sat=svg.querySelector('#ksatm'), lab=intro.querySelector('.pinlab'), PIN=[396,566], DM=192, G=null;
-    intro.classList.add('on','pre');
-    setTimeout(function(){intro.classList.remove('pre');},120);
+    intro.classList.add('on','pre','pre-t');
+    setTimeout(function(){intro.classList.remove('pre-t');},120);
     mIntro=function(){
       intro.classList.remove('lite'); intro.classList.add('on');
       var s=stage.getBoundingClientRect(), r=slot.getBoundingClientRect();
@@ -638,11 +638,19 @@ body{margin:0;background:#f2f2f0}
       var src=G.W/G.H>1.05?img.dataset.wide:img.dataset.tall; if(img.getAttribute('href')!==src) img.setAttribute('href',src);
     }
     var IE=0, iTw=null, iOpen=false;
-    function goIntro(to,dur){if(iTw)iTw.c=true;iTw=tween(IE,to,dur,function(v){IE=v;uIntro();});}
+    function goIntro(to,dur,done){if(iTw)iTw.c=true;iTw=tween(IE,to,dur,function(v){IE=v;uIntro();},done);}
+    var locked=false, ty0=null, DOWN=[' ','ArrowDown','PageDown','End','Spacebar'], NAV=DOWN.concat(['ArrowUp','PageUp','Home']);
+    // první pohyb dolů stránku podrží, roztažení proběhne celé a pak se scroll uvolní
+    function openIntro(){iOpen=true;locked=true;if(window.scrollY>0)window.scrollTo(0,0);goIntro(1,1300,function(){locked=false;});}
+    window.addEventListener('wheel',function(e){if(!G)return;if(locked){e.preventDefault();return;}if(!iOpen&&window.scrollY<=2&&e.deltaY>0){e.preventDefault();openIntro();}},{passive:false});
+    window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});
+    window.addEventListener('touchmove',function(e){if(!G)return;if(locked){e.preventDefault();return;}if(!iOpen&&window.scrollY<=2&&ty0!==null&&e.touches[0].clientY<ty0-6){e.preventDefault();openIntro();}},{passive:false});
+    window.addEventListener('keydown',function(e){if(!G||/input|select|textarea/i.test(e.target.tagName))return;if(locked&&NAV.indexOf(e.key)>-1){e.preventDefault();return;}if(!iOpen&&window.scrollY<=2&&DOWN.indexOf(e.key)>-1){e.preventDefault();openIntro();}});
     // první posun stránky spustí roztažení siluety do fotky; návrat úplně nahoru ji zase stáhne
     window.addEventListener('scroll',function(){
       if(!G) return;
-      if(!iOpen&&window.scrollY>4){iOpen=true;goIntro(1,1100);}
+      if(locked){if(window.scrollY>0)window.scrollTo(0,0);return;}
+      if(!iOpen&&window.scrollY>4){if(window.scrollY<240)openIntro();else{iOpen=true;IE=1;uIntro();}}
       else if(iOpen&&window.scrollY<=1){iOpen=false;goIntro(0,900);}
     },{passive:true});
     uIntro=function(){
@@ -670,24 +678,35 @@ body{margin:0;background:#f2f2f0}
     var vst=vrs.querySelector('.vr-stage'), pk=vrs.querySelector('.pk-fr'),
         frs=[2,3,4].map(function(i){return vrs.querySelector('.f'+i)}), tags=[1,2,3].map(function(i){return vrs.querySelector('.t'+i)}),
         lis=[1,2,3].map(function(i){return vrs.querySelector('.vr-list [data-i="'+i+'"]')}), V=null;
-    var VP=0, vTw=null, rb=vrs.querySelector('.pk-re');
-    // vrstvy přibývají podle scrollu; při scrollu zpět zůstávají (drží se nejdál dosažený stav)
-    function scrollP(){return V&&V.dist?cl(-vrs.getBoundingClientRect().top/V.dist):1;}
+    var VP=0, vTw=null, rb=vrs.querySelector('.pk-re'), fin=false;
+    // vrstvy přibývají podle scrollu; při scrollu zpět zůstávají a po dokončení se sekce „odlepí“ a už nezdržuje
+    function scrollP(){
+      if(!V) return 0;
+      if(V.free){var r=pk.getBoundingClientRect(),vh=window.innerHeight;return cl((vh*.9-r.top)/(vh*.6));}
+      return cl(-vrs.getBoundingClientRect().top/V.dist);
+    }
     mVrs=function(){
       vrs.classList.add('on');
+      if(fin){V={free:true};drawVrs();return;}
+      vrs.classList.add('stk');
       var stH=window.innerHeight-hh();
-      if(vrs.querySelector('.vr-grid').offsetHeight>stH-16){vrs.classList.remove('on');V={};VP=1;drawVrs();return;}
-      V={dist:Math.max(1,vrs.offsetHeight-vst.offsetHeight)};
-      uVrs();
+      if(vrs.querySelector('.vr-grid').offsetHeight>stH-16){vrs.classList.remove('stk');V={free:true};}
+      else V={dist:Math.max(1,vrs.offsetHeight-vst.offsetHeight)};
+      drawVrs(); uVrs();
     };
     uVrs=function(){
-      if(!V||vTw) return;
+      if(!V||vTw||fin) return;
       var p=scrollP(); if(p>VP){VP=p;drawVrs();}
       vrs.classList.toggle('done',VP>.9);
+      if(VP>=.999){
+        fin=true;
+        if(vrs.classList.contains('stk')){var y0=pk.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=pk.getBoundingClientRect().top-y0;if(dy)window.scrollBy(0,dy);}
+        V={free:true};
+      }
     };
     rb.addEventListener('click',function(){
       if(vTw)vTw.c=true; vrs.classList.remove('done');
-      var to=Math.max(.9,scrollP());
+      var to=1;
       vTw=tween(0,to,3600,function(v){VP=v;drawVrs();},function(){vTw=null;vrs.classList.toggle('done',VP>.9);});
     });
     function drawVrs(){
@@ -728,6 +747,10 @@ body{margin:0;background:#f2f2f0}
     window.addEventListener('scroll',update,{passive:true});
     window.addEventListener('resize',measure);
     measure();
+    if(intro&&window.scrollY>240&&typeof IE!=='undefined'){iOpen=true;IE=1;uIntro();}
+    // kreslení mapy začne až s načtenou fotkou, aby se nástup neuřízl
+    (function(){var st=false,go=function(){if(st)return;st=true;setTimeout(function(){intro&&intro.classList.remove('pre');},80);};
+      if(!intro) return; var pi=new Image(); pi.onload=pi.onerror=go; pi.src=intro.querySelector('.ki').getAttribute('href'); if(pi.complete)go(); setTimeout(go,3000);})();
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
     window.addEventListener('load',measure);
   }
