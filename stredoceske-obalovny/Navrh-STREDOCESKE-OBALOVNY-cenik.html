@@ -773,6 +773,10 @@ body{margin:0;background:#f2f2f0}
   // časová animace (v pozadí se rovnou dokončí)
   function tween(from,to,dur,step,done){var h={c:false},t0=null;function f(t){if(h.c)return;if(t0===null)t0=t;var k=cl((t-t0)/dur);step(from+(to-from)*k);if(k<1)requestAnimationFrame(f);else if(done)done();}if(document.hidden||!window.requestAnimationFrame){step(to);if(done)done();}else requestAnimationFrame(f);return h;}
 
+  if(motion&&root.querySelector('.intro')&&!location.hash){
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+    window.scrollTo(0,0);
+  }
   if(motion){
     var hh=function(){return root.querySelector('.hd').offsetHeight};
     /* --- úvod: silueta kraje se otevře do fotky --- */
@@ -867,10 +871,14 @@ body{margin:0;background:#f2f2f0}
         V={free:true};
       }
     };
+    // ↻ vrátí vrstvy na prázdnou fotku a sekci znovu přichytí – pokládka jede znovu podle scrollu
     rb.addEventListener('click',function(){
-      if(vTw)vTw.c=true; vrs.classList.remove('done');
-      var to=1;
-      vTw=tween(0,to,3600,function(v){VP=v;drawVrs();},function(){vTw=null;vrs.classList.toggle('done',VP>.9);});
+      if(vTw){vTw.c=true;vTw=null;}
+      fin=false; VP=0; vrs.classList.remove('done');
+      vTw={c:true}; mVrs(); VP=0; drawVrs();
+      var top=vrs.getBoundingClientRect().top+window.scrollY-(V&&V.dist?hh():Math.round(window.innerHeight*.15));
+      window.scrollTo(0,Math.max(0,top));
+      setTimeout(function(){vTw=null;},50);
     });
     function drawVrs(){
       if(!V) return;
