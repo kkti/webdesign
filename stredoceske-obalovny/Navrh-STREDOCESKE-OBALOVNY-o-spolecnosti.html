@@ -586,6 +586,14 @@ body{margin:0;background:#f2f2f0}
   function cl(v){return v<0?0:v>1?1:v}
   function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
   function lerp(a,b,t){return a+(b-a)*t}
+  // nástup až ve chvíli, kdy je stránka opravdu vidět (karta v popředí, načtená)
+  function whenShown(cb,delay,noFocus){
+    var done=false,run0=function(){if(done)return;done=true;setTimeout(cb,delay||0);};
+    // okno otevřené z jiné aplikace se do popředí dostává se zpožděním – počkat na aktivní okno (max. 1,5 s)
+    var run=function(){if(noFocus||document.hasFocus())run0();else{window.addEventListener('focus',run0,{once:true});setTimeout(run0,1500);}};
+    var vis=function(){if(document.visibilityState==='visible')run();else document.addEventListener('visibilitychange',function h(){if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',h);run();}});};
+    if(document.readyState==='complete')vis();else window.addEventListener('load',vis,{once:true});
+  }
   // časová animace (v pozadí se rovnou dokončí)
   function tween(from,to,dur,step,done){var h={c:false},t0=null;function f(t){if(h.c)return;if(t0===null)t0=t;var k=cl((t-t0)/dur);step(from+(to-from)*k);if(k<1)requestAnimationFrame(f);else if(done)done();}if(document.hidden||!window.requestAnimationFrame){step(to);if(done)done();}else requestAnimationFrame(f);return h;}
 
@@ -602,7 +610,7 @@ body{margin:0;background:#f2f2f0}
         slot=intro.querySelector('.slot'), card=intro.querySelector('.card'), img=svg.querySelector('.ki'), kcg=svg.querySelector('.kc'),
         shapes=svg.querySelectorAll('[data-shape]'), pin=svg.querySelector('.pin'), ksh=svg.querySelector('.ksh'), sat=svg.querySelector('#ksatm'), lab=intro.querySelector('.pinlab'), PIN=[396,566], DM=192, G=null;
     intro.classList.add('on','pre','pre-t');
-    setTimeout(function(){intro.classList.remove('pre-t');},120);
+    whenShown(function(){intro.classList.remove('pre-t');},200,true);
     mIntro=function(){
       intro.classList.remove('lite'); intro.classList.add('on');
       var s=stage.getBoundingClientRect(), r=slot.getBoundingClientRect();
@@ -735,9 +743,9 @@ body{margin:0;background:#f2f2f0}
     window.addEventListener('resize',measure);
     measure();
     if(intro&&window.scrollY>240&&typeof IE!=='undefined'){iOpen=true;IE=1;uIntro();}
-    // kreslení mapy začne až s načtenou fotkou, aby se nástup neuřízl
-    (function(){var st=false,go=function(){if(st)return;st=true;setTimeout(function(){intro&&intro.classList.remove('pre');},80);};
-      if(!intro) return; var pi=new Image(); pi.onload=pi.onerror=go; pi.src=intro.querySelector('.ki').getAttribute('href'); if(pi.complete)go(); setTimeout(go,3000);})();
+    // stránka se nejdřív zobrazí, pak se nakreslí mapa (čeká na fotku, načtení i viditelnost karty)
+    (function(){if(!intro) return;var st=false,go=function(){if(st)return;st=true;whenShown(function(){intro.classList.remove('pre');},700);};
+      var pi=new Image(); pi.onload=pi.onerror=go; pi.src=intro.querySelector('.ki').getAttribute('href'); if(pi.complete)go(); setTimeout(go,3000);})();
     if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
     window.addEventListener('load',measure);
   }
