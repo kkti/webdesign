@@ -10,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Carlito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-anchor:none;scrollbar-gutter:stable}
+html.sco-hold{overflow:hidden}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:#f2f2f0}
 #sco{
@@ -783,7 +784,7 @@ body{margin:0;background:#f2f2f0}
 
   if(motion&&root.querySelector('.intro')&&!location.hash){
     if('scrollRestoration' in history) history.scrollRestoration='manual';
-    window.scrollTo(0,0);
+    window.scrollTo({top:0,behavior:'instant'});
   }
   if(motion){
     var hh=function(){return root.querySelector('.hd').offsetHeight};
@@ -816,7 +817,10 @@ body{margin:0;background:#f2f2f0}
     function goIntro(to,dur,done){if(iTw)iTw.c=true;iTw=tween(IE,to,dur,function(v){IE=v;uIntro();},done);}
     var locked=false, ty0=null, DOWN=[' ','ArrowDown','PageDown','End','Spacebar'], NAV=DOWN.concat(['ArrowUp','PageUp','Home']);
     // první pohyb dolů stránku podrží, roztažení proběhne celé a pak se scroll uvolní
-    function openIntro(){iOpen=true;locked=true;if(window.scrollY>0)window.scrollTo(0,0);goIntro(1,1300,function(){locked=false;});}
+    // stránku drží tam, kde je (bez vracení nahoru = bez poskočení)
+    var lockY=0;
+    function openIntro(){iOpen=true;locked=true;lockY=window.scrollY;document.documentElement.classList.add('sco-hold');goIntro(1,1300);
+      setTimeout(function(){locked=false;document.documentElement.classList.remove('sco-hold');},1350);}
     window.addEventListener('wheel',function(e){if(!G)return;if(locked){e.preventDefault();return;}if(!iOpen&&window.scrollY<=2&&e.deltaY>0){e.preventDefault();openIntro();}},{passive:false});
     window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});
     window.addEventListener('touchmove',function(e){if(!G)return;if(locked){e.preventDefault();return;}if(!iOpen&&window.scrollY<=2&&ty0!==null&&e.touches[0].clientY<ty0-6){e.preventDefault();openIntro();}},{passive:false});
@@ -824,7 +828,7 @@ body{margin:0;background:#f2f2f0}
     // první posun stránky spustí roztažení siluety do fotky; návrat úplně nahoru ji zase stáhne
     window.addEventListener('scroll',function(){
       if(!G) return;
-      if(locked){if(window.scrollY>0)window.scrollTo(0,0);return;}
+      if(locked) return;
       if(!iOpen&&window.scrollY>4){if(window.scrollY<240)openIntro();else{iOpen=true;IE=1;uIntro();}}
       else if(iOpen&&window.scrollY<=1){iOpen=false;goIntro(0,900);}
     },{passive:true});
@@ -878,7 +882,7 @@ body{margin:0;background:#f2f2f0}
         var rr=vrs.getBoundingClientRect();
         if(!vrs.classList.contains('stk')||rr.bottom<0||rr.top>window.innerHeight){
           fin=true;
-          if(vrs.classList.contains('stk')){var nx=vrs.nextElementSibling||vrs,y0=nx.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=nx.getBoundingClientRect().top-y0;if(dy)window.scrollTo({top:window.scrollY+dy,behavior:'instant'});}
+          if(vrs.classList.contains('stk')){var above=rr.bottom<0,nx=vrs.nextElementSibling||vrs,y0=nx.getBoundingClientRect().top;vrs.classList.remove('stk');var dy=nx.getBoundingClientRect().top-y0;if(above&&dy)window.scrollTo({top:window.scrollY+dy,behavior:'instant'});}
           V={free:true};
         }
       }
