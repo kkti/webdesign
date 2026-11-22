@@ -8,20 +8,21 @@
 <meta name="description" content="Unofficial redesign concept for Witco Inc., an AS9100 & ISO 9001:2015 certified, ITAR registered CNC contract manufacturer in Avoca, Michigan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0C1524; --panel:#14213A; --panel2:#101B2F; --line:rgba(123,164,215,.13); --line2:rgba(123,164,215,.24);
-  --text:#EEF2F8; --muted:#9DABC1; --dim:#6E7E98;
-  --navy:#2D3F5B; --red:#BF1E2E; --red-l:#E8505B; --blue:#7BA4D7;
-  --cyan:#7BA4D7; --cyan-d:rgba(123,164,215,.16); --amber:#E8505B; --amber-d:rgba(232,80,91,.12);
-  --sans:"Archivo",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-  --text2:#D6DCE6; --num:rgba(255,255,255,.28); --hover:rgba(255,255,255,.03); --strong:#fff;
+  --bg:#0F172A; --panel:#1E293B; --panel2:#172033; --line:#334155; --line2:#475569;
+  --text:#F8FAFC; --text2:#E2E8F0; --muted:#A5B2C5; --dim:#8090A6;
+  --navy:#1E293B; --red:#B45309; --red-l:#E0A15E; --blue:#A9C1F5; --cobalt:#1D4ED8;
+  --cyan:#A9C1F5; --cyan-d:rgba(169,193,245,.12); --amber:#E0A15E; --amber-d:rgba(224,161,94,.12);
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --text2:#E2E8F0; --num:rgba(255,255,255,.28); --hover:rgba(255,255,255,.04); --strong:#fff; --field:#0B1222; --track:#334155;
+  --ease:cubic-bezier(.16,1,.3,1);
   --nav:64px; --bar:34px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 16px)}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 #witco{container-type:inline-size;overflow-x:clip;position:relative}
 #witco a{color:inherit}
@@ -29,30 +30,30 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
 #witco .wrap{width:min(1320px,100%);margin:0 auto;padding:0 clamp(16px,4cqw,48px)}
 #witco .mono{font-family:var(--mono);letter-spacing:.04em}
-#witco .label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
+#witco .label{font-family:var(--sans);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
 #witco .label::before{content:"";width:18px;height:1px;background:var(--cyan)}
 #witco .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* unofficial bar */
-#witco .unofficial{min-height:var(--bar);padding-block:6px !important;flex-wrap:wrap;display:flex;align-items:center;justify-content:center;gap:8px;font:500 12px/1.2 var(--mono);color:#fff;background:var(--red);padding:0 12px;text-align:center}
+#witco .unofficial{min-height:var(--bar);padding-block:6px !important;flex-wrap:wrap;display:flex;align-items:center;justify-content:center;gap:8px;font:500 12px/1.2 var(--sans);color:#fff;background:var(--red);padding:0 12px;text-align:center}
 #witco .unofficial a{font-weight:600;text-decoration:underline;text-underline-offset:2px}
 
 /* nav */
-#witco .nav{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(12,21,36,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+#witco .nav{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(15,23,42,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
 #witco .nav .wrap{height:100%;display:flex;align-items:center;gap:20px}
 #witco .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.08em;font-size:15px;min-height:44px}
 #witco .brand svg{width:34px;height:34px}
 #witco .pill{font:500 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--muted);border:1px solid var(--line2);border-radius:3px;padding:7px 12px;display:flex;gap:8px;align-items:center;white-space:nowrap}
-#witco .pill i{width:6px;height:6px;border-radius:50%;background:var(--red-l);box-shadow:0 0 10px var(--red);display:inline-block}
+#witco .pill i{width:6px;height:6px;border-radius:50%;background:var(--red-l);display:inline-block}
 #witco .links{margin-left:auto;display:flex;gap:4px}
-#witco .links a{font-size:14px;color:var(--muted);text-decoration:none;padding:12px 12px;border-radius:8px;transition:color .2s}
+#witco .links a{font-size:15px;color:var(--muted);text-decoration:none;padding:12px 12px;border-radius:8px;transition:color .2s}
 #witco .links a:hover{color:var(--text)}
 #witco .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border-radius:4px;font:600 14px/1 var(--sans);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .25s,background .25s,border-color .25s}
 #witco .btn svg{width:16px;height:16px}
-#witco .btn-primary{background:var(--red);color:#fff;box-shadow:0 8px 30px -8px rgba(191,30,46,.65)}
-#witco .btn-primary:hover{background:#D42536;box-shadow:0 0 0 4px rgba(191,30,46,.22),0 10px 40px -6px rgba(191,30,46,.75);transform:translateY(-1px)}
+#witco .btn-primary{background:var(--red);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+#witco .btn-primary:hover{background:#92400E;transform:translateY(-2px)}
 #witco .btn-ghost{background:rgba(255,255,255,.03);color:var(--text);border-color:var(--line2)}
-#witco .btn-ghost:hover{border-color:rgba(123,164,215,.5);background:var(--cyan-d)}
+#witco .btn-ghost:hover{border-color:rgba(169,193,245,.5);background:var(--cyan-d)}
 #witco .burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:4px;border:1px solid var(--line2);background:transparent;color:var(--text);cursor:pointer}
 #witco .burger svg{width:20px;height:20px}
 #witco .mnav{display:none}
@@ -61,7 +62,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 @container (max-width:860px){
   #witco .links,#witco .nav .btn-primary{display:none}
   #witco .burger{display:inline-flex;align-items:center;justify-content:center}
-  #witco .mnav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:var(--nav);background:rgba(12,21,36,.97);border-bottom:1px solid var(--line);padding:8px 16px 20px}
+  #witco .mnav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:var(--nav);background:rgba(15,23,42,.97);border-bottom:1px solid var(--line);padding:8px 16px 20px}
   #witco .mnav a{padding:14px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-size:16px}
   #witco .mnav .btn{margin-top:14px}
   #witco .mnav .pill{display:flex;margin-top:14px;justify-content:center;white-space:normal}
@@ -74,163 +75,162 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco h1{font-size:clamp(40px,5.6cqw,84px);line-height:.98;letter-spacing:-.035em;font-weight:700;margin:22px 0 22px}
 #witco h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
 #witco h1 .ln>span{display:inline-block}
-#witco h1 em{font-style:normal;background:linear-gradient(90deg,var(--blue),#ffffff 50%,var(--red-l));-webkit-background-clip:text;background-clip:text;color:transparent}
-#witco .lead{font-size:clamp(16px,1.35cqw,19px);line-height:1.6;color:var(--muted);max-width:560px;margin:0 0 30px}
+#witco h1 em{font-style:normal;color:var(--red-l)}
+#witco .lead{font-size:clamp(18px,1.4cqw,20px);line-height:1.6;color:var(--muted);max-width:580px;margin:0 0 30px}
 #witco .lead b{color:var(--text);font-weight:600}
 #witco .ctas{display:flex;flex-wrap:wrap;gap:12px}
-#witco .tagline{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font:500 12.5px/1.6 var(--mono);color:var(--muted);max-width:560px}
-#witco .tagline span{color:var(--amber)}
+#witco .tagline{margin-top:34px;padding:2px 0 2px 16px;border-left:3px solid var(--red);font:500 17px/1.5 var(--sans);color:var(--text2);max-width:560px;font-style:italic}
+
 #witco .stage{position:relative;height:min(78svh,720px);min-height:420px;border-radius:8px}
 #witco .stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
-#witco .stage .hud{position:absolute;font:500 11px/1.5 var(--mono);letter-spacing:.1em;color:var(--muted);pointer-events:none;text-transform:uppercase}
-#witco .hud.tl{top:14px;left:14px}
-#witco .hud.br{bottom:64px;right:14px;text-align:right}
-#witco .hud b{color:var(--cyan);font-weight:500}
-#witco .corner{position:absolute;width:18px;height:18px;border-color:rgba(123,164,215,.55);border-style:solid;pointer-events:none}
+
+
+
+
+#witco .corner{position:absolute;width:18px;height:18px;border-color:var(--line2);border-style:solid;pointer-events:none}
 #witco .corner.a{top:0;left:0;border-width:1px 0 0 1px}#witco .corner.b{top:0;right:0;border-width:1px 1px 0 0}
 #witco .corner.c{bottom:0;left:0;border-width:0 0 1px 1px}#witco .corner.d{bottom:0;right:0;border-width:0 1px 1px 0}
-#witco .toggles{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:4px;padding:4px;background:rgba(20,33,58,.85);border:1px solid var(--line2);border-radius:6px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-#witco .toggles button{min-height:40px;padding:0 14px;border-radius:3px;border:0;background:transparent;color:var(--muted);font:500 12px/1 var(--mono);letter-spacing:.08em;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
-#witco .toggles button[aria-pressed="true"]{background:var(--cyan-d);color:var(--cyan)}
-#witco .toggles svg{width:15px;height:15px}
-#witco .stage .note{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font:400 11px/1.3 var(--mono);color:var(--dim)}
+#witco .toggles{display:flex;justify-content:center;gap:0;margin:18px auto 0;width:max-content;max-width:100%;border-bottom:1px solid var(--line)}
+#witco .toggles button{min-height:44px;padding:0 18px;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;background:transparent;color:var(--dim);font:500 14px/1 var(--sans);cursor:pointer;transition:color .45s var(--ease),border-color .45s var(--ease)}
+#witco .toggles button:hover{color:var(--text2)}
+#witco .toggles button[aria-pressed="true"]{color:var(--text);border-bottom-color:var(--red-l)}
+
+
+#witco .note{margin:12px 0 0;text-align:center;font:400 13px/1.4 var(--sans);color:var(--dim)}
 #witco .fallback{position:absolute;inset:10%;display:none}
 #witco .stage.nogl .fallback{display:block}
 @container (max-width:900px){
   #witco .hero{grid-template-columns:1fr;min-height:0;padding-top:28px}
-  #witco .stage{height:62svh;min-height:360px;margin-bottom:24px}
+  #witco .stage{height:56svh;min-height:340px}
 }
 @container (max-width:480px){
-  #witco .toggles{width:calc(100% - 16px);justify-content:space-between}
-  #witco .toggles button{padding:0 8px;font-size:11px;gap:5px;flex:1;justify-content:center}
-  #witco .stage .note{bottom:-40px}
-  #witco .hud.br{bottom:60px}
+  #witco .toggles button{padding:0 10px;font-size:13px}
 }
 
 /* trust bar */
-#witco .trust{border-block:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.015),transparent)}
-#witco .trust ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(6,1fr)}
-#witco .trust li{border-right:1px solid var(--line)}
-#witco .trust li:first-child{border-left:1px solid var(--line)}
-#witco .trust a{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:22px 18px;text-decoration:none;min-height:96px;transition:background .25s}
-#witco .trust a:hover{background:var(--hover)}
-#witco .trust svg{width:22px;height:22px;color:var(--muted);transition:color .25s}
-#witco .trust a:hover svg{color:var(--cyan)}
-#witco .trust strong{font:600 12px/1.3 var(--mono);letter-spacing:.1em;color:var(--text2)}
-#witco .trust small{font:400 11px/1.3 var(--mono);color:var(--dim)}
-@container (max-width:1000px){#witco .trust ul{grid-template-columns:repeat(3,1fr)}#witco .trust li{border-bottom:1px solid var(--line)}#witco .trust li:nth-child(4){border-left:1px solid var(--line)}}
-@container (max-width:560px){#witco .trust ul{grid-template-columns:repeat(2,1fr)}#witco .trust li:nth-child(odd){border-left:1px solid var(--line)}#witco .trust li:nth-child(4){border-left:0}}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* sections */
 #witco section.block{padding-block:clamp(80px,10cqw,140px)}
 #witco .head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:48px}
 #witco h2{font-size:clamp(32px,3.8cqw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:700;margin:16px 0 0}
 #witco h2 span{color:var(--muted)}
-#witco .head p{color:var(--muted);font-size:16px;line-height:1.65;margin:0;max-width:520px;justify-self:end}
+#witco .head p{color:var(--muted);font-size:17.5px;line-height:1.65;margin:0;max-width:520px;justify-self:end}
 @container (max-width:800px){#witco .head{grid-template-columns:1fr}#witco .head p{justify-self:start}}
 
 /* modules 01 02 03 */
 #witco .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1400px}
-#witco .mod{position:relative;isolation:isolate;background:linear-gradient(180deg,rgba(123,164,215,.07),rgba(123,164,215,0) 38%),var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px;display:flex;flex-direction:column;min-height:600px;overflow:hidden;transform-style:preserve-3d;will-change:transform}
-#witco .mod::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:radial-gradient(420px circle at var(--mx,50%) var(--my,-20%),rgba(123,164,215,.95),rgba(191,30,46,.55) 30%,transparent 58%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:.35;transition:opacity .4s;pointer-events:none;z-index:2}
-#witco .mod::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(520px circle at var(--mx,50%) var(--my,-20%),rgba(123,164,215,.16),transparent 50%);opacity:.5;transition:opacity .4s;pointer-events:none;z-index:-1}
-#witco .mod:hover::before{opacity:1}
-#witco .mod:hover::after{opacity:1}
-#witco .mod .tick{position:absolute;top:0;left:30px;width:46px;height:3px;background:var(--red);box-shadow:0 0 18px rgba(191,30,46,.8);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+#witco .mod{position:relative;isolation:isolate;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:30px;display:flex;flex-direction:column;min-height:600px;overflow:hidden;transform-style:preserve-3d;will-change:transform}
+
+
+
+
+#witco .mod .tick{position:absolute;top:0;left:30px;width:46px;height:3px;background:var(--red);transition:width .6s var(--ease)}
 #witco .mod:hover .tick{width:120px}
 #witco .mod .top{display:flex;justify-content:space-between;align-items:flex-start}
-#witco .mod .num{font:600 clamp(84px,8.4cqw,132px)/.86 var(--mono);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.2px rgba(123,164,215,.55);background:linear-gradient(100deg,#fff 0 30%,var(--blue) 55%,var(--red-l) 85%);-webkit-background-clip:text;background-clip:text;background-size:240% 100%;background-position:100% 0;transition:background-position 1.4s cubic-bezier(.7,0,.2,1) .15s;margin-left:-4px}
+#witco .mod .num{font:600 clamp(84px,8.4cqw,132px)/.86 var(--mono);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.2px rgba(169,193,245,.55);background:linear-gradient(100deg,#fff 0 30%,var(--blue) 55%,var(--red-l) 85%);-webkit-background-clip:text;background-clip:text;background-size:240% 100%;background-position:100% 0;transition:background-position 1.4s cubic-bezier(.7,0,.2,1) .15s;margin-left:-4px}
 #witco .mod.in .num,#witco .mod:not(.rv) .num{background-position:0 0}
-#witco .mod .stat{font:500 10.5px/1.5 var(--mono);letter-spacing:.14em;color:var(--dim);text-align:right;text-transform:uppercase}
+#witco .mod .stat{font:500 10.5px/1.5 var(--sans);letter-spacing:.07em;color:var(--dim);text-align:right;text-transform:uppercase}
 #witco .mod .stat b{display:block;font-size:20px;letter-spacing:-.01em;color:var(--text);font-weight:600}
-#witco .mod h3{font:600 12.5px/1.3 var(--mono);letter-spacing:.18em;margin:22px 0 12px;color:var(--blue)}
+#witco .mod h3{font:600 12.5px/1.3 var(--sans);letter-spacing:.07em;margin:22px 0 12px;color:var(--blue)}
 #witco .mod .big{font-size:clamp(21px,1.75cqw,25px);line-height:1.25;font-weight:700;letter-spacing:-.02em;margin:0 0 14px;color:var(--text)}
-#witco .mod p{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
-#witco .mod .art{position:relative;height:190px;margin:24px -6px 6px;border-radius:6px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 55%,rgba(123,164,215,.12),transparent 65%),repeating-linear-gradient(0deg,transparent 0 19px,rgba(123,164,215,.07) 19px 20px),repeating-linear-gradient(90deg,transparent 0 19px,rgba(123,164,215,.07) 19px 20px),#0A1322;transform:translateZ(30px)}
+#witco .mod p{color:var(--muted);font-size:16.5px;line-height:1.6;margin:0}
+#witco .mod .art{position:relative;height:190px;margin:24px -6px 6px;border-radius:6px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 50% 55%,rgba(169,193,245,.12),transparent 65%),repeating-linear-gradient(0deg,transparent 0 19px,rgba(169,193,245,.07) 19px 20px),repeating-linear-gradient(90deg,transparent 0 19px,rgba(169,193,245,.07) 19px 20px),#0B1222;transform:translateZ(30px)}
 #witco .mod .art svg{position:absolute;inset:0;width:100%;height:100%}
-#witco .mod .art .hud{position:absolute;left:10px;top:8px;font:500 9.5px/1.4 var(--mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+#witco .mod .art .hud{position:absolute;left:10px;top:8px;font:500 9.5px/1.4 var(--sans);letter-spacing:.07em;color:var(--dim);text-transform:uppercase}
 #witco .mod .art .hud i{font-style:normal;color:var(--red-l)}
-#witco .mod .art .rec{position:absolute;right:10px;top:8px;font:500 9.5px/1 var(--mono);letter-spacing:.14em;color:var(--blue);display:flex;align-items:center;gap:6px}
-#witco .mod .art .rec::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red-l);box-shadow:0 0 8px var(--red)}
+
+
 #witco .mod dl{margin:auto 0 0;padding-top:18px;display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font:400 12.5px/1.4 var(--mono)}
 #witco .mod dt{color:var(--dim)}
 #witco .mod dd{margin:0;color:var(--text2);text-align:right}
-#witco .mod .src{margin-top:18px;font:500 12px/1 var(--mono);color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+#witco .mod .src{margin-top:18px;font:500 12px/1 var(--sans);color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
 #witco .mod .src:hover{color:var(--blue)}
 @container (max-width:1000px){#witco .mods{grid-template-columns:1fr}#witco .mod{min-height:0}}
 
 /* white sections: blueprint grid */
-#witco .light{background-image:repeating-linear-gradient(0deg,transparent 0 39px,rgba(46,94,158,.045) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,rgba(46,94,158,.045) 39px 40px)}
+#witco .light{background-image:repeating-linear-gradient(0deg,transparent 0 39px,rgba(29,78,216,.045) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,rgba(29,78,216,.045) 39px 40px)}
 /* technical-drawing section lettering: dimension line, extension lines, centre line, title block */
 #witco .has-dwg{position:relative}
 #witco .has-dwg>*:not(.dwg){position:relative;z-index:1}
-#witco .dwg{position:relative;width:max-content;max-width:100%;margin:0 0 36px auto;padding-top:10px;z-index:0;pointer-events:none;color:rgba(46,94,158,.5);translate:calc(var(--gp,0) * -4cqw) 0}
+#witco .dwg{position:relative;width:max-content;max-width:100%;margin:0 0 36px auto;padding-top:10px;z-index:0;pointer-events:none;color:rgba(29,78,216,.5);translate:calc(var(--gp,0) * -4cqw) 0}
 #witco .dwg-dim{position:relative;height:1px;background:currentColor;margin:0 0 22px}
 #witco .dwg-dim::before,#witco .dwg-dim::after{content:"";position:absolute;top:-3.5px;border-style:solid}
 #witco .dwg-dim::before{left:0;border-width:3.5px 9px 3.5px 0;border-color:transparent currentColor transparent transparent}
 #witco .dwg-dim::after{right:0;border-width:3.5px 0 3.5px 9px;border-color:transparent transparent transparent currentColor}
-#witco .dwg-dim span{position:absolute;left:50%;top:-8px;transform:translateX(-50%);background:#fff;padding:0 10px;font:500 10.5px/16px var(--mono);letter-spacing:.16em;color:rgba(46,94,158,.85);white-space:nowrap}
-#witco .dwg-word{position:relative;font:300 clamp(50px,8cqw,128px)/.86 var(--mono);letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(46,94,158,.32);white-space:nowrap}
+#witco .dwg-dim span{position:absolute;left:50%;top:-8px;transform:translateX(-50%);background:var(--bg);padding:0 10px;font:500 10.5px/16px var(--mono);letter-spacing:.16em;color:rgba(29,78,216,.85);white-space:nowrap}
+#witco .dwg-word{position:relative;font:300 clamp(50px,8cqw,128px)/.86 var(--mono);letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(29,78,216,.32);white-space:nowrap}
 #witco .dwg-word::before,#witco .dwg-word::after{content:"";position:absolute;top:-26px;height:calc(55% + 26px);border-left:1px solid currentColor}
 #witco .dwg-word::before{left:0}#witco .dwg-word::after{right:0}
 #witco .dwg-cl{height:1px;margin-top:16px;background:repeating-linear-gradient(90deg,currentColor 0 24px,transparent 24px 29px,currentColor 29px 32px,transparent 32px 37px)}
-#witco .dwg-tb{margin-top:8px;text-align:right;font:500 10px/1 var(--mono);letter-spacing:.16em;color:rgba(46,94,158,.7)}
+#witco .dwg-tb{margin-top:8px;text-align:right;font:500 10px/1 var(--mono);letter-spacing:.16em;color:rgba(29,78,216,.7)}
 @container (max-width:760px){#witco .dwg{translate:none;margin:0 0 28px;overflow:hidden}}
 /* drawing-sheet section tags */
 #witco .label[data-sec]::before{content:attr(data-sec);width:auto;height:auto;background:none;border:1px solid currentColor;color:var(--red-l);padding:4px 6px 3px;font:600 10px/1 var(--mono);letter-spacing:.12em;transform:none !important}
 #witco .light .label[data-sec]::before{color:var(--red)}
 /* parts list (bill of materials) */
 #witco .bom{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:56px}
-#witco .bom-col{background:#fff;border:1px solid var(--line2);border-radius:4px;box-shadow:0 24px 48px -36px rgba(20,33,58,.35)}
-#witco .bom-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 18px;border-bottom:2px solid var(--navy);font:600 12px/1.3 var(--mono);letter-spacing:.14em;color:var(--text)}
+#witco .bom-col{background:#fff;border:1px solid var(--line2);border-radius:4px;box-shadow:0 24px 48px -36px rgba(15,23,42,.35)}
+#witco .bom-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 18px;border-bottom:2px solid var(--navy);font:600 12px/1.3 var(--sans);letter-spacing:.07em;color:var(--text)}
 #witco .bom-head a{font-weight:500;font-size:10.5px;color:var(--cyan);text-decoration:none;letter-spacing:.12em;min-height:32px;display:inline-flex;align-items:center;white-space:nowrap}
 #witco .bom-head a:hover{text-decoration:underline}
-#witco .bom-t{width:100%;border-collapse:collapse;font-size:14px}
+#witco .bom-t{width:100%;border-collapse:collapse;font-size:15.5px}
 #witco .bom-t th,#witco .bom-t td{border-bottom:1px solid var(--line);padding:11px 14px;text-align:left;vertical-align:top}
 #witco .bom-t td+th,#witco .bom-t th+td,#witco .bom-t th+th,#witco .bom-t td+td{border-left:1px solid var(--line)}
-#witco .bom-t thead th{font:600 10px/1 var(--mono);letter-spacing:.16em;color:var(--dim);padding-block:9px;background:var(--panel)}
+#witco .bom-t thead th{font:600 10px/1 var(--sans);letter-spacing:.07em;color:var(--dim);padding-block:9px;background:var(--panel)}
 #witco .bom-t tbody th{font-weight:600;color:var(--text);white-space:nowrap}
 #witco .bom-t tbody td{color:var(--muted);line-height:1.5}
 #witco .bom-t td:first-child{width:56px}
 #witco .bal{display:inline-flex;width:28px;height:28px;border:1px solid var(--navy);border-radius:50%;align-items:center;justify-content:center;font:600 11px/1 var(--mono);color:var(--navy)}
-#witco .bom-foot{padding:12px 18px;font:500 11px/1.5 var(--mono);letter-spacing:.06em;color:var(--dim)}
+#witco .bom-foot{padding:12px 18px;font:500 11px/1.5 var(--sans);letter-spacing:.06em;color:var(--dim)}
 @container (max-width:1000px){#witco .bom{grid-template-columns:1fr}}
 @container (max-width:520px){#witco .bom-t tbody th{white-space:normal}#witco .bom-t th,#witco .bom-t td{padding:10px 9px}#witco .bom-t td:first-child{width:40px}}
 /* engineering type: wide grotesque for headings */
-#witco h1,#witco h2,#witco h3,#witco .mod .big,#witco .xp-step h3{font-stretch:112%;letter-spacing:-.025em}
+#witco h1,#witco h2,#witco h3,#witco .mod .big,#witco .xp-step h3{letter-spacing:-.02em}
 #witco h1{font-weight:700;letter-spacing:-.035em}
-#witco .btn{font-stretch:108%;letter-spacing:.01em}
-#witco .brand{font-stretch:118%;letter-spacing:.1em}
+
+#witco .brand{letter-spacing:.08em}
 
 #witco .matfin{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
 #witco .chipbox{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:24px 28px}
-#witco .chipbox h4{margin:0 0 16px;font:600 12px/1 var(--mono);letter-spacing:.14em;color:var(--amber)}
+#witco .chipbox h4{margin:0 0 16px;font:600 12px/1 var(--sans);letter-spacing:.07em;color:var(--amber)}
 #witco .chips{display:flex;flex-wrap:wrap;gap:8px}
-#witco .chips span{font:400 12.5px/1 var(--mono);padding:8px 10px;border:1px solid var(--line2);border-radius:8px;color:var(--text2)}
+#witco .chips span{font:400 12.5px/1 var(--sans);padding:8px 10px;border:1px solid var(--line2);border-radius:8px;color:var(--text2)}
 @container (max-width:800px){#witco .matfin{grid-template-columns:1fr}}
 
 /* markets */
 #witco .tabs{display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:6px;background:var(--panel2);width:max-content;max-width:100%;overflow-x:auto;scrollbar-width:none;position:relative}
 #witco .tabs::-webkit-scrollbar{display:none}
-#witco .tabs button{position:relative;z-index:1;min-height:44px;padding:0 18px;border:0;background:transparent;color:var(--muted);font:600 12.5px/1 var(--mono);letter-spacing:.12em;cursor:pointer;border-radius:4px;white-space:nowrap;transition:color .25s}
-#witco .tabs button[aria-selected="true"]{color:#0C1524}
-#witco .tabs .ind{position:absolute;z-index:0;top:5px;bottom:5px;left:0;width:0;border-radius:4px;background:var(--cyan);box-shadow:0 0 24px -4px rgba(123,164,215,.7);transition:left .45s cubic-bezier(.7,0,.2,1),width .45s cubic-bezier(.7,0,.2,1)}
+#witco .tabs button{position:relative;z-index:1;min-height:44px;padding:0 18px;border:0;background:transparent;color:var(--muted);font:600 12.5px/1 var(--sans);letter-spacing:.07em;cursor:pointer;border-radius:4px;white-space:nowrap;transition:color .25s}
+#witco .tabs button[aria-selected="true"]{color:#0F172A}
+#witco .tabs .ind{position:absolute;z-index:0;top:5px;bottom:5px;left:0;width:0;border-radius:4px;background:var(--navy);transition:left .6s var(--ease),width .6s var(--ease)}
 #witco .market{margin-top:20px;display:grid;grid-template-columns:1.1fr .9fr;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:540px}
 #witco .market .info{padding:clamp(24px,3cqw,44px);display:flex;flex-direction:column}
 #witco .market h3{font-size:clamp(24px,2.4cqw,34px);letter-spacing:-.02em;line-height:1.15;margin:14px 0 14px;font-weight:700}
-#witco .market .desc{color:var(--muted);line-height:1.65;font-size:15.5px;margin:0 0 26px;max-width:620px}
-#witco .spec{width:100%;border-collapse:collapse;font:400 13px/1.45 var(--mono)}
+#witco .market .desc{color:var(--muted);line-height:1.65;font-size:17px;margin:0 0 26px;max-width:620px}
+#witco .spec{width:100%;border-collapse:collapse;font:400 15px/1.5 var(--sans)}
 #witco .spec th,#witco .spec td{padding:11px 0;border-top:1px solid var(--line);vertical-align:top;text-align:left}
 #witco .spec th{color:var(--dim);font-weight:400;width:38%;padding-right:16px;letter-spacing:.06em}
 #witco .spec td{color:var(--text2)}
 #witco .certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-#witco .certs span{font:600 11px/1 var(--mono);letter-spacing:.1em;padding:8px 10px;border-radius:3px;background:var(--amber-d);color:var(--amber);border:1px solid rgba(232,80,91,.3)}
+#witco .certs span{font:600 11px/1 var(--sans);letter-spacing:.1em;padding:8px 10px;border-radius:3px;background:var(--amber-d);color:var(--amber);border:1px solid rgba(224,161,94,.3)}
 #witco .market .more{margin-top:auto;padding-top:22px}
-#witco .market .more a{font:500 12px/1 var(--mono);color:var(--muted);text-decoration:none;display:inline-flex;min-height:44px;align-items:center;gap:8px}
+#witco .market .more a{font:500 12px/1 var(--sans);color:var(--muted);text-decoration:none;display:inline-flex;min-height:44px;align-items:center;gap:8px}
 #witco .market .more a:hover{color:var(--cyan)}
-#witco .schem{position:relative;border-left:1px solid var(--line);background:radial-gradient(circle at 50% 50%,rgba(123,164,215,.06),transparent 60%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.04) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.04) 31px 32px);display:flex;align-items:center;justify-content:center;padding:28px}
+#witco .schem{position:relative;border-left:1px solid var(--line);background:radial-gradient(circle at 50% 50%,rgba(169,193,245,.06),transparent 60%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.04) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.04) 31px 32px);display:flex;align-items:center;justify-content:center;padding:28px}
 #witco .schem svg{width:100%;max-width:440px;height:auto}
-#witco .schem .cap{position:absolute;left:16px;bottom:14px;font:400 11px/1.3 var(--mono);color:var(--dim);letter-spacing:.06em}
+#witco .schem .cap{position:absolute;left:16px;bottom:14px;font:400 11px/1.3 var(--sans);color:var(--dim);letter-spacing:.06em}
 #witco .schem .tag{position:absolute;right:16px;top:14px;font:500 11px/1.3 var(--mono);color:var(--cyan);letter-spacing:.12em}
 #witco .market.swap .info>*,#witco .market.swap .schem svg{animation:swapin .55s cubic-bezier(.2,.7,.2,1) both}
 #witco .market.swap .info>*:nth-child(2){animation-delay:.04s}#witco .market.swap .info>*:nth-child(3){animation-delay:.08s}#witco .market.swap .info>*:nth-child(4){animation-delay:.12s}
@@ -244,18 +244,18 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .calc{display:grid;grid-template-columns:.95fr 1.05fr;gap:16px}
 #witco .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:clamp(22px,2.6cqw,36px)}
 #witco .field{margin-bottom:28px}
-#witco .field>label,#witco .field>.flabel{display:flex;justify-content:space-between;align-items:baseline;font:600 12px/1 var(--mono);letter-spacing:.12em;color:var(--muted);margin-bottom:14px;text-transform:uppercase}
+#witco .field>label,#witco .field>.flabel{display:flex;justify-content:space-between;align-items:baseline;font:600 12px/1 var(--sans);letter-spacing:.07em;color:var(--muted);margin-bottom:14px;text-transform:uppercase}
 #witco .field output{font:600 15px/1 var(--mono);color:var(--cyan);letter-spacing:.02em;text-transform:none}
 #witco .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-#witco .seg button{min-height:48px;border-radius:4px;border:1px solid var(--line2);background:rgba(255,255,255,.02);color:var(--muted);font:500 13px/1.2 var(--sans);cursor:pointer;padding:6px 8px;transition:all .2s}
+#witco .seg button{min-height:48px;border-radius:4px;border:1px solid var(--line2);background:var(--field);color:var(--muted);font:500 15px/1.2 var(--sans);cursor:pointer;padding:6px 8px;transition:all .2s}
 #witco .seg button[aria-pressed="true"]{border-color:var(--cyan);color:var(--text);background:var(--cyan-d)}
-#witco select,#witco input[type=text],#witco input[type=email],#witco input[type=tel],#witco input[type=date],#witco input[type=number],#witco textarea{width:100%;min-height:48px;background:#0E182B;border:1px solid var(--line2);color:var(--text);border-radius:4px;padding:12px 14px;font:400 15px/1.3 var(--sans);transition:border-color .2s}
-#witco select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239DABC1' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-#witco select:focus,#witco input:focus,#witco textarea:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px rgba(123,164,215,.15)}
+#witco select,#witco input[type=text],#witco input[type=email],#witco input[type=tel],#witco input[type=date],#witco input[type=number],#witco textarea{width:100%;min-height:48px;background:var(--field);border:1px solid var(--line2);color:var(--text);border-radius:4px;padding:12px 14px;font:400 15px/1.3 var(--sans);transition:border-color .2s}
+#witco select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+#witco select:focus,#witco input:focus,#witco textarea:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px rgba(169,193,245,.15)}
 #witco input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;--v:50%}
-#witco input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--cyan) var(--v),rgba(255,255,255,.1) var(--v))}
-#witco input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--cyan) var(--v),rgba(255,255,255,.1) var(--v))}
-#witco input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--cyan);margin-top:-9px;box-shadow:0 0 0 6px rgba(123,164,215,.15)}
+#witco input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--cyan) var(--v),var(--track) var(--v))}
+#witco input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--cyan) var(--v),var(--track) var(--v))}
+#witco input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--cyan);margin-top:-9px;box-shadow:0 0 0 6px rgba(169,193,245,.15)}
 #witco input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--cyan)}
 #witco .ticks{display:flex;justify-content:space-between;font:400 11px/1 var(--mono);color:var(--dim);margin-top:2px}
 #witco .results{display:flex;flex-direction:column;gap:16px}
@@ -263,32 +263,32 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .kpi{background:var(--panel);padding:20px 18px}
 #witco .kpi .v{font:600 clamp(24px,2.4cqw,34px)/1 var(--mono);letter-spacing:-.02em;color:var(--text)}
 #witco .kpi .v small{font-size:.5em;color:var(--muted);margin-left:2px}
-#witco .kpi .k{font:500 11px/1.4 var(--mono);letter-spacing:.1em;color:var(--dim);margin-top:10px;text-transform:uppercase}
+#witco .kpi .k{font:500 11px/1.4 var(--sans);letter-spacing:.1em;color:var(--dim);margin-top:10px;text-transform:uppercase}
 #witco .kpi.c .v{color:var(--cyan)}#witco .kpi.a .v{color:var(--amber)}
 #witco .route{list-style:none;margin:0;padding:0}
-#witco .route li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;line-height:1.5}
+#witco .route li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.55}
 #witco .route li:first-child{border-top:0;padding-top:0}
-#witco .route .rk{font:500 11.5px/1.5 var(--mono);letter-spacing:.1em;color:var(--dim);text-transform:uppercase;padding-top:2px}
+#witco .route .rk{font:500 11.5px/1.5 var(--sans);letter-spacing:.1em;color:var(--dim);text-transform:uppercase;padding-top:2px}
 #witco .route .rv{color:var(--text2)}
 #witco .route .rv em{font-style:normal;color:var(--amber)}
 #witco .route li.flash .rv{animation:flash .6s ease}
 @keyframes flash{from{color:var(--cyan)}to{color:var(--text2)}}
 #witco .lock{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}
 #witco .lock .btn{min-height:48px}
-#witco .disclaim{font:400 12px/1.55 var(--mono);color:var(--dim);margin:14px 0 0}
+#witco .disclaim{font:400 12px/1.55 var(--sans);color:var(--dim);margin:14px 0 0}
 #witco .status{margin-top:12px;font:500 13px/1.5 var(--sans);padding:12px 14px;border-radius:4px;display:none}
 #witco .status.show{display:block}
-#witco .status.ok{background:var(--cyan-d);color:#bff8ff;border:1px solid rgba(123,164,215,.35)}
-#witco .status.err{background:rgba(239,68,68,.12);color:#fecaca;border:1px solid rgba(239,68,68,.4)}
+#witco .status.ok{background:var(--cyan-d);color:var(--text);border:1px solid var(--cyan)}
+#witco .status.err{background:rgba(185,28,28,.08);color:var(--text);border:1px solid #B91C1C}
 @container (max-width:1000px){#witco .calc{grid-template-columns:1fr}}
 @container (max-width:600px){#witco .lock{grid-template-columns:1fr}#witco .kpis{grid-template-columns:1fr}#witco .route li{grid-template-columns:1fr;gap:4px}#witco .seg{grid-template-columns:1fr}}
 
 /* quality */
 #witco .qual{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
 #witco .qual .panel h3{font-size:24px;letter-spacing:-.015em;margin:14px 0 12px}
-#witco .qual p{color:var(--muted);line-height:1.65;font-size:15.5px}
+#witco .qual p{color:var(--muted);line-height:1.65;font-size:17px}
 #witco .checks{columns:2;column-gap:28px;padding:0;margin:20px 0 0;list-style:none}
-#witco .checks li{font:400 13px/1.4 var(--mono);color:var(--text2);padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative;break-inside:avoid}
+#witco .checks li{font:400 15.5px/1.4 var(--sans);color:var(--text2);padding:9px 0 9px 22px;border-top:1px solid var(--line);position:relative;break-inside:avoid}
 #witco .checks li::before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border:1px solid var(--cyan);transform:rotate(45deg)}
 #witco .docs{list-style:none;padding:0;margin:0}
 #witco .docs a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:52px;border-top:1px solid var(--line);text-decoration:none;font-size:14.5px;color:var(--text2);transition:color .2s,padding .25s}
@@ -296,8 +296,8 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .docs a span{font:400 11px/1 var(--mono);color:var(--dim)}
 #witco .story{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 #witco .story div{background:var(--panel2);padding:24px}
-#witco .story b{display:block;font:600 22px/1.1 var(--mono);color:var(--amber);margin-bottom:10px}
-#witco .story p{margin:0;font-size:14px;line-height:1.55;color:var(--muted)}
+#witco .story b{display:block;font:600 22px/1.1 var(--sans);color:var(--amber);margin-bottom:10px}
+#witco .story p{margin:0;font-size:15.5px;line-height:1.55;color:var(--muted)}
 @container (max-width:1000px){#witco .qual{grid-template-columns:1fr}#witco .story{grid-template-columns:1fr 1fr}}
 @container (max-width:560px){#witco .story{grid-template-columns:1fr}#witco .checks{columns:1}}
 
@@ -313,7 +313,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco details[open] summary .pm{border-color:var(--cyan);color:var(--cyan)}
 #witco details[open] summary .pm::after{transform:translate(-50%,-50%) rotate(0)}
 #witco summary:hover{color:var(--strong)}
-#witco .ans{color:var(--muted);line-height:1.7;font-size:15.5px;padding:0 56px 24px 0;overflow:hidden}
+#witco .ans{color:var(--muted);line-height:1.7;font-size:17px;padding:0 56px 24px 0;overflow:hidden}
 #witco .ans p{margin:0 0 10px}
 #witco .ans code{font-family:var(--mono);font-size:13px;color:var(--cyan)}
 @container (max-width:900px){#witco .faq{grid-template-columns:1fr;gap:24px}#witco .ans{padding-right:0}}
@@ -322,14 +322,14 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .rfq{display:grid;grid-template-columns:.75fr 1.25fr;gap:16px}
 #witco .contact-card{display:flex;flex-direction:column;gap:22px}
 #witco .contact-card .row{border-top:1px solid var(--line);padding-top:16px}
-#witco .contact-card .k{font:500 11px/1 var(--mono);letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+#witco .contact-card .k{font:500 11px/1 var(--sans);letter-spacing:.07em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
 #witco .contact-card .v{font-size:16px;line-height:1.55}
 #witco .contact-card .v a{text-decoration:none;color:var(--cyan)}
 #witco .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px 14px}
 #witco .grid2 .full{grid-column:1/-1}
-#witco .fl{display:block;font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+#witco .fl{display:block;font:600 14px/1.2 var(--sans);letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
 #witco .fl i{color:var(--amber);font-style:normal}
-#witco input[type=file]{width:100%;min-height:48px;padding:10px;border:1px dashed var(--line2);border-radius:4px;color:var(--muted);font:400 13px var(--mono);background:#0E182B}
+#witco input[type=file]{width:100%;min-height:48px;padding:10px;border:1px dashed var(--line2);border-radius:4px;color:var(--muted);font:400 13px var(--sans);background:var(--field)}
 #witco textarea{min-height:110px;resize:vertical}
 #witco .invalid{border-color:#ef4444 !important}
 @container (max-width:900px){#witco .rfq{grid-template-columns:1fr}}
@@ -338,14 +338,14 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 /* footer */
 #witco footer{border-top:1px solid var(--line);padding-top:72px;margin-top:40px;position:relative;overflow:hidden}
 #witco .fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
-#witco .fgrid h5{font:600 11px/1 var(--mono);letter-spacing:.14em;color:var(--dim);margin:0 0 16px;text-transform:uppercase}
+#witco .fgrid h5{font:600 11px/1 var(--sans);letter-spacing:.07em;color:var(--dim);margin:0 0 16px;text-transform:uppercase}
 #witco .fgrid ul{list-style:none;padding:0;margin:0}
 #witco .fgrid li a{display:inline-flex;min-height:36px;align-items:center;text-decoration:none;color:var(--text2);font-size:14.5px}
 #witco .fgrid li a:hover{color:var(--cyan)}
 #witco .fgrid p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0 0 10px}
-#witco .fmail{font:600 clamp(20px,2.2cqw,30px)/1.2 var(--mono);color:var(--cyan);word-break:break-all}
+#witco .fmail{font:600 clamp(20px,2.2cqw,30px)/1.2 var(--sans);color:var(--cyan);word-break:break-all}
 #witco .wordmark{font-weight:800;font-size:clamp(64px,17cqw,260px);line-height:.8;letter-spacing:-.05em;margin:64px 0 0;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);white-space:nowrap;user-select:none;transform:translateY(calc((1 - var(--p,1)) * 30%))}
-#witco .fbottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:20px 0 28px;font:400 12px/1.5 var(--mono);color:var(--dim)}
+#witco .fbottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:20px 0 28px;font:400 12px/1.5 var(--sans);color:var(--dim)}
 #witco .fbottom a{color:var(--amber)}
 @container (max-width:900px){#witco .fgrid{grid-template-columns:1fr 1fr}}
 @container (max-width:520px){#witco .fgrid{grid-template-columns:1fr}}
@@ -359,6 +359,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco.anim.ready .hero .fade{opacity:1;transform:none}
 #witco.anim .stage{opacity:0;transform:scale(.96);transition:opacity 1.4s ease .2s,transform 1.6s cubic-bezier(.2,.7,.2,1) .2s}
 #witco.anim .stage.in{opacity:1;transform:none}
+/* heavy, damped motion everywhere */
+#witco a,#witco button,#witco .btn,#witco .mod,#witco .panel,#witco summary .pm{transition-timing-function:var(--ease)}
+#witco .btn{transition:background-color .45s var(--ease),color .45s var(--ease),border-color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}
 /* ---- exploded gearbox ---- */
 #witco .xp{position:relative;padding-block:clamp(60px,8cqw,110px)}
 #witco .xp-intro{margin-bottom:28px}
@@ -366,11 +369,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .xp-view{display:none}
 #witco .xp-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 #witco .xp-step{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px}
-#witco .xp-step .n{font:500 12px/1 var(--mono);letter-spacing:.14em;color:var(--cyan)}
+#witco .xp-step .n{font:500 12px/1 var(--sans);letter-spacing:.07em;color:var(--cyan)}
 #witco .xp-step h3{font-size:clamp(22px,2.2cqw,30px);line-height:1.15;letter-spacing:-.02em;margin:12px 0 12px;font-weight:700}
-#witco .xp-step p{color:var(--muted);line-height:1.65;font-size:15.5px;margin:0}
+#witco .xp-step p{color:var(--muted);line-height:1.65;font-size:16.5px;margin:0}
 #witco .xp-step .chips{margin-top:16px}
-#witco .xp-step .chips span{border-color:rgba(232,80,91,.35);color:var(--amber);font-size:11.5px;padding:7px 9px}
+#witco .xp-step .chips span{border-color:rgba(224,161,94,.35);color:var(--amber);font-size:11.5px;padding:7px 9px}
 #witco .xp-step .btn{margin-top:18px}
 #witco .xp-rail{display:none}
 /* scroll mode (enabled by JS once WebGL is running) */
@@ -379,24 +382,24 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco .xp.on .xp-sticky{position:sticky;top:var(--nav);height:calc(100svh - var(--nav));display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);gap:clamp(16px,3cqw,48px);align-items:center}
 #witco .xp.on .xp-copy{position:relative;z-index:2;display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start}
 #witco .xp.on .xp-steps{display:block;position:relative;min-height:340px}
-#witco .xp.on .xp-step{position:absolute;inset:0 0 auto 0;background:rgba(20,33,58,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(22px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+#witco .xp.on .xp-step{position:absolute;inset:0 0 auto 0;background:rgba(15,23,42,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(22px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
 #witco .xp.on .xp-step.on{opacity:1;transform:none;pointer-events:auto}
 #witco .xp.on .xp-step.past{transform:translateY(-22px)}
 #witco .xp.on .xp-rail{display:flex;flex-direction:column;gap:2px;position:relative;padding-left:0}
 #witco .xp-rail::before{content:"";position:absolute;left:21px;top:22px;bottom:22px;width:1px;background:var(--line2)}
-#witco .xp-rail .fill{position:absolute;left:21px;top:22px;width:1px;height:calc((100% - 44px) * var(--xp,0));background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+#witco .xp-rail .fill{position:absolute;left:21px;top:22px;width:1px;height:calc((100% - 44px) * var(--xp,0));background:var(--red-l)}
 #witco .xp-rail button{position:relative;width:44px;height:44px;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font:600 11px/1 var(--mono);color:var(--dim)}
 #witco .xp-rail button span{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--line2);transition:all .3s}
-#witco .xp-rail button.on span{border-color:var(--cyan);color:#0C1524;background:var(--cyan);box-shadow:0 0 16px -2px var(--cyan)}
-#witco .xp-rail button.done span{border-color:rgba(123,164,215,.5);color:var(--cyan)}
+#witco .xp-rail button.on span{border-color:var(--red-l);color:#0F172A;background:var(--red-l)}
+#witco .xp-rail button.done span{border-color:rgba(169,193,245,.5);color:var(--cyan)}
 #witco .xp.on .xp-view{display:block;position:relative;height:100%;min-height:0}
 #witco .xp-view canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#witco .xp-hud{position:absolute;left:12px;top:16px;font:500 11px/1.6 var(--mono);letter-spacing:.12em;color:var(--muted);pointer-events:none;text-transform:uppercase}
+#witco .xp-hud{position:absolute;left:12px;top:16px;font:500 11px/1.6 var(--sans);letter-spacing:.07em;color:var(--muted);pointer-events:none;text-transform:uppercase}
 #witco .xp-hud b{color:var(--cyan);font-weight:500}
-#witco .xp-note{position:absolute;right:12px;bottom:14px;font:400 11px/1.3 var(--mono);color:var(--dim);pointer-events:none;text-align:right}
+#witco .xp-note{position:absolute;right:12px;bottom:14px;font:400 11px/1.3 var(--sans);color:var(--dim);pointer-events:none;text-align:right}
 #witco .xp-co{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 #witco .xp-co svg{position:absolute;inset:0;width:100%;height:100%}
-#witco .co{position:absolute;left:0;top:0;font:500 10.5px/1.35 var(--mono);letter-spacing:.1em;color:var(--text);background:rgba(12,21,36,.86);border:1px solid rgba(123,164,215,.45);border-radius:6px;padding:6px 9px;white-space:nowrap;opacity:0;will-change:transform,opacity}
+#witco .co{position:absolute;left:0;top:0;font:500 10.5px/1.35 var(--sans);letter-spacing:.1em;color:var(--text);background:rgba(15,23,42,.86);border:1px solid rgba(169,193,245,.45);border-radius:6px;padding:6px 9px;white-space:nowrap;opacity:0;will-change:transform,opacity}
 #witco .co small{display:block;color:var(--amber);font-size:9.5px;letter-spacing:.12em}
 @container (max-width:900px){
   #witco .xp.on .xp-sticky{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;align-items:stretch;gap:0}
@@ -416,7 +419,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 
 /* ---- motion polish ---- */
 /* scroll progress hairline under nav */
-#witco .nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--amber));transform-origin:0 50%;transform:scaleX(var(--sp,0));box-shadow:0 0 10px rgba(123,164,215,.6);pointer-events:none}
+#witco .nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red);transform-origin:0 50%;transform:scaleX(var(--sp,0));pointer-events:none}
 /* hero copy drifts up & fades as the hero leaves (var 0 = resting state) */
 #witco .hero-copy{translate:0 calc(var(--hp,0) * -90px);opacity:calc(1 - var(--hp,0) * .85)}
 #witco .hero::before{translate:0 calc(var(--hp,0) * 60px)}
@@ -426,8 +429,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 #witco.anim .label.rv::before{transform:scaleX(0);transform-origin:0 50%;transition:transform .9s cubic-bezier(.7,0,.2,1) .25s}
 #witco.anim .label.rv.in::before{transform:scaleX(1)}
 /* module cards: staggered scroll parallax + line art draw + number fill */
-#witco .mod{translate:0 calc(var(--cp,0) * var(--k,0) * 1px)}
-@container (max-width:1000px){#witco .mod{translate:none}}
+#witco .mod{transition:translate .45s var(--ease),border-color .45s var(--ease)}
+#witco .mod:hover{translate:0 -2px}
+
 /* chips cascade */
 #witco.anim .chipbox.rv .chips span{opacity:0;translate:0 8px;transition:opacity .5s ease,translate .5s ease;transition-delay:calc(.15s + var(--i,0) * 28ms)}
 #witco.anim .chipbox.rv.in .chips span{opacity:1;translate:0 0}
@@ -445,7 +449,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 @keyframes ansin{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 /* configurator kpi tick */
 #witco .kpi .v{transition:text-shadow .4s}
-#witco .kpi.bump .v{text-shadow:0 0 18px currentColor}
+
 
 @media (prefers-reduced-motion:reduce){
   #witco h2.rv,#witco .label.rv::before{clip-path:none !important;transform:none !important}
@@ -460,21 +464,73 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 }
 
 /* ---- white sections (red · white · blue) ---- */
-#witco .light{--bg:#FFFFFF;--panel:#F4F6FA;--panel2:#EEF2F7;--line:rgba(45,63,91,.12);--line2:rgba(45,63,91,.22);
-  --text:#14213A;--text2:#22314A;--muted:#4B5B75;--dim:#66758E;--cyan:#2E5E9E;--cyan-d:rgba(46,94,158,.09);
-  --amber:#BF1E2E;--amber-d:rgba(191,30,46,.07);--num:rgba(20,33,58,.22);--hover:rgba(45,63,91,.04);--strong:#0C1524;
+#witco .light{--bg:#F8FAFC;--panel:#FFFFFF;--panel2:#F1F5F9;--line:#E2E8F0;--line2:#CBD5E1;
+  --text:#0F172A;--text2:#1E293B;--muted:#475569;--dim:#64748B;--cyan:#1D4ED8;--cyan-d:rgba(29,78,216,.07);
+  --amber:#B45309;--amber-d:rgba(180,83,9,.08);--num:rgba(15,23,42,.22);--hover:rgba(15,23,42,.03);--strong:#0F172A;--field:#FFFFFF;--track:#CBD5E1;
   color:var(--text);background:var(--bg);box-shadow:0 0 0 100vmax var(--bg);clip-path:inset(0 -100vmax)}
-#witco .light .chipbox,#witco .light .panel,#witco .light .market{background:#fff;box-shadow:0 1px 0 rgba(20,33,58,.03),0 24px 48px -32px rgba(20,33,58,.28)}
+#witco .light.alt{--bg:#F1F5F9;--panel2:#E8EDF3}
+#witco .light .chipbox,#witco .light .panel,#witco .light .market{background:#fff;border-color:var(--line2);box-shadow:0 1px 2px rgba(15,23,42,.05)}
 /* navy cards inside the white section */
-#witco .light .mod{--panel:#14213A;--line:rgba(123,164,215,.16);--line2:rgba(123,164,215,.26);--text:#EEF2F8;--text2:#D6DCE6;--muted:#A3B0C4;--dim:#72829B;--cyan:#7BA4D7;color:var(--text);border-color:transparent;box-shadow:0 30px 60px -30px rgba(12,21,36,.55),0 2px 0 rgba(12,21,36,.04)}
+#witco .light .mod{--panel:#1E293B;--line:#334155;--line2:#475569;--text:#F8FAFC;--text2:#E2E8F0;--muted:#A5B2C5;--dim:#8090A6;--cyan:#A9C1F5;color:var(--text);border-color:#1E293B;box-shadow:0 1px 2px rgba(15,23,42,.08)}
+#witco .light .mod:hover{border-color:#64748B}
 #witco .light .tabs button[aria-selected="true"]{color:#fff}
-#witco .light .tabs .ind{background:var(--navy);box-shadow:0 8px 20px -8px rgba(45,63,91,.6)}
+#witco .light .tabs .ind{background:var(--navy);box-shadow:none}
 #witco .light .story b{color:var(--red)}
 #witco .light .btn-ghost{background:#fff}
-#witco .trust.light{border-color:var(--line);border-top:3px solid var(--red)}
+#witco .trust.light{border:0}
 /* the schematic stays a dark CAD screen inside the white market card */
-#witco .light .schem{--dim:#6E7E98;--cyan:#7BA4D7;background-color:#0C1524;border-left-color:transparent}
-#witco .light .schem{background-image:radial-gradient(circle at 50% 50%,rgba(123,164,215,.1),transparent 60%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.045) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.045) 31px 32px)}
+#witco .light .schem{--dim:#8090A6;--cyan:#A9C1F5;background-color:#0F172A;border-left-color:transparent}
+#witco .light .schem{background-image:radial-gradient(circle at 50% 50%,rgba(169,193,245,.1),transparent 60%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.045) 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(255,255,255,.045) 31px 32px)}
+
+/* ---- American Precision Heritage additions ---- */
+#witco .heritage-badge{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 14px;border:1px solid var(--line2);border-radius:4px;background:rgba(255,255,255,.03);font:600 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
+#witco .heritage-badge i{font-style:normal;color:var(--red-l)}
+#witco .hb-mark{width:24px;height:13px;flex:none;background:linear-gradient(#1E3A8A,#1E3A8A) 0 0/42% 54% no-repeat,repeating-linear-gradient(180deg,#B91C1C 0 1px,#F8FAFC 1px 2px);border-radius:1px;box-shadow:0 0 0 1px rgba(255,255,255,.18)}
+#witco .textlink{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:44px;color:var(--text2);font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .45s var(--ease),color .45s var(--ease)}
+#witco .textlink svg{width:16px;height:16px}
+#witco .textlink:hover{border-bottom-color:var(--red-l);color:var(--text)}
+#witco .stage-wrap{position:relative}
+/* certification nameplates */
+#witco .trust{padding:34px 0;border-bottom:1px solid var(--line2)}
+#witco .plates{list-style:none;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+#witco .plate{position:relative;background:#fff;border:1px solid var(--line2);border-radius:3px;box-shadow:0 1px 2px rgba(15,23,42,.05);display:flex;flex-direction:column;transition:translate .45s var(--ease),border-color .45s var(--ease)}
+#witco .plate:hover{translate:0 -2px;border-color:#94A3B8}
+#witco .plate::before,#witco .plate::after{content:"";position:absolute;top:7px;width:5px;height:5px;border-radius:50%;background:#CBD5E1;box-shadow:inset 0 1px 1px rgba(15,23,42,.25)}
+#witco .plate::before{left:7px}#witco .plate::after{right:7px}
+#witco .plate a{display:flex;flex-direction:column;gap:4px;padding:22px 16px 16px;text-decoration:none;color:var(--text);flex:1}
+#witco .pl-k{font:600 11px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+#witco .plate strong{font:700 18px/1.2 var(--sans);letter-spacing:-.01em}
+#witco .plate small{font:400 13px/1.4 var(--sans);color:var(--muted)}
+#witco .copy{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;margin:0;padding:0 16px;border:0;border-top:1px dashed var(--line2);background:#F8FAFC;color:var(--text2);font:600 12px/1 var(--sans);letter-spacing:.08em;cursor:pointer;border-radius:0 0 3px 3px;transition:background .45s var(--ease)}
+#witco .copy code{font:600 14px/1 var(--mono);letter-spacing:.06em;color:var(--cobalt);margin-left:6px;margin-right:auto}
+#witco .copy svg{width:16px;height:16px;color:var(--muted)}
+#witco .copy:hover{background:#EEF2FF}
+#witco .toast{position:fixed;left:50%;bottom:28px;z-index:80;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#0F172A;color:#F8FAFC;border:1px solid #334155;border-left:3px solid var(--red);border-radius:4px;padding:12px 18px;font:500 15px/1.3 var(--sans);box-shadow:0 10px 30px -10px rgba(15,23,42,.5);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+#witco .toast.show{opacity:1;transform:translate(-50%,0)}
+#witco .toast code{font-family:var(--mono);color:#E0A15E}
+@container (max-width:1100px){#witco .plates{grid-template-columns:repeat(3,1fr)}}
+@container (max-width:560px){#witco .plates{grid-template-columns:repeat(2,1fr)}#witco .plate a{padding:20px 12px 12px}#witco .copy{padding:0 12px}}
+/* heritage */
+#witco .heritage{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5cqw,72px);align-items:start}
+#witco .h-photo{margin:0;background:#fff;border:1px solid var(--line2);padding:12px;border-radius:3px;box-shadow:0 1px 2px rgba(15,23,42,.06)}
+#witco .h-photo img{width:100%;height:auto;aspect-ratio:739/602;object-fit:cover;border-radius:2px;filter:saturate(.92) contrast(1.03)}
+#witco .h-photo figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 4px 2px;font:400 14px/1.4 var(--sans);color:var(--muted)}
+#witco .h-photo figcaption span{font-size:12.5px;color:var(--dim)}
+#witco .h-text h2{margin-bottom:22px}
+#witco .h-text p{color:var(--muted);font-size:17.5px;line-height:1.7;margin:0 0 16px;max-width:620px}
+#witco .h-ph{margin:26px 0 0}
+#witco .ph-box{aspect-ratio:4/3;max-width:420px;border:1.5px dashed var(--line2);border-radius:3px;background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(15,23,42,.025) 14px 15px),#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px}
+#witco .ph-box span{font:600 15px/1.3 var(--sans);color:var(--text2)}
+#witco .ph-box small{font:400 13px/1.3 var(--sans);color:var(--dim)}
+#witco .light .story{background:var(--line2);border-color:var(--line2)}
+#witco .light .story div{background:#fff}
+#witco .story b{font-size:28px;letter-spacing:-.02em}
+@container (max-width:900px){#witco .heritage{grid-template-columns:1fr}}
+/* RFQ upload first */
+#witco .drop{padding:16px;border:1.5px dashed var(--line2);border-radius:4px;background:var(--panel2)}
+#witco .drop input[type=file]{background:#fff;border-style:solid}
+#witco .drop small{display:block;margin-top:8px;font-size:13.5px;color:var(--dim)}
+#witco .made{color:var(--red-l) !important;font-weight:600}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -499,9 +555,11 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
   <symbol id="i-scan" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 7V4h3M21 7V4h-3M3 17v3h3M21 17v3h-3M3 12h18"/><circle cx="12" cy="12" r="3.5"/></g></symbol>
   <symbol id="i-cube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></g></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10M7.5 4.5l9 5M16.5 4.5l-9 5M3 12l9 5 9-5"/></g></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M15 9V5.5A1.5 1.5 0 0 0 13.5 4h-8A1.5 1.5 0 0 0 4 5.5v8A1.5 1.5 0 0 0 5.5 15H9"/></g></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></g></symbol>
-  <symbol id="logo" viewBox="0 0 40 40"><g fill="none" stroke="currentColor"><path d="M20 1.5 36 10.75v18.5L20 38.5 4 29.25v-18.5z" stroke-width="1.3" opacity=".55"/><path d="M10 13.5l4.2 13.5L20 15.5l5.8 11.5L30 13.5" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"/><circle cx="20" cy="31.5" r="1.6" fill="#7BA4D7" stroke="none"/><path d="M20 4.5v4M20 31.5v4" stroke="#7BA4D7" stroke-width="1"/></g></symbol>
+  <symbol id="logo" viewBox="0 0 40 40"><g fill="none" stroke="currentColor"><path d="M20 1.5 36 10.75v18.5L20 38.5 4 29.25v-18.5z" stroke-width="1.3" opacity=".55"/><path d="M10 13.5l4.2 13.5L20 15.5l5.8 11.5L30 13.5" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square"/><circle cx="20" cy="31.5" r="1.6" fill="#A9C1F5" stroke="none"/><path d="M20 4.5v4M20 31.5v4" stroke="#A9C1F5" stroke-width="1"/></g></symbol>
 </svg>
 
 <header class="nav">
@@ -525,7 +583,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 <!-- HERO -->
 <section class="wrap hero" aria-labelledby="h1">
   <div class="hero-copy">
-    <div class="label fade" style="--d:.1s">Avoca, Michigan · Since 1977 · NAICS 332710</div>
+    <div class="heritage-badge fade" style="--d:.1s"><span class="hb-mark" aria-hidden="true"></span>Avoca, Michigan <i>•</i> Founded in 1977 <i>•</i> WBENC Woman-Owned</div>
     <h1 id="h1">
       <span class="ln"><span style="--d:.15s">Precision CNC</span></span>
       <span class="ln"><span style="--d:.25s">Machining.</span></span>
@@ -535,37 +593,39 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
     <p class="lead fade" style="--d:.6s"><b>AS9100 &amp; ISO 9001:2015 certified, ITAR registered</b> contract manufacturer for aerospace, defense, medical and industrial programs — 5-axis milling, 6-axis turning, gears and shafts, verified on a Zeiss Prismo CMM in our 50,000 sq ft Michigan facility.</p>
     <div class="ctas fade" style="--d:.72s">
       <a class="btn btn-primary" href="#configurator">Launch RFQ Configurator <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <a class="btn btn-ghost" href="#capabilities">Explore Capabilities</a>
+      <a class="btn btn-ghost" href="#rfq" id="directRfq"><svg aria-hidden="true"><use href="#i-upload"/></svg>Upload Drawing / Direct RFQ</a>
     </div>
-    <p class="tagline fade" style="--d:.85s"><span>// </span>Increase your parts reliability while reducing your operating costs.</p>
+    <a class="textlink fade" style="--d:.8s" href="#capabilities">Explore capabilities <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <p class="tagline fade" style="--d:.9s">Increase your parts reliability while reducing your operating costs.</p>
   </div>
 
-  <div class="stage" id="stage" aria-label="Interactive 3D model of an open two-stage gearbox (illustrative)">
-    <canvas id="cad" aria-hidden="true"></canvas>
-    <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
-    <div class="hud tl">MODEL · 2-STAGE GEARBOX<br>GEARS · <b>Z14 · Z30 · Z16 · Z36</b><br>VIEW · <b id="hudView">SOLID PBR</b></div>
-    <div class="hud br">CMM SCAN<br>Z <b id="hudZ">+0.000</b> IN<br><span id="hudState">PROBING</span></div>
-    <svg class="fallback" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="#7BA4D7" stroke-width="1" opacity=".7" id="fbBlisk"></g></svg>
-    <div class="toggles" role="group" aria-label="3D view controls">
-      <button type="button" id="tSolid" aria-pressed="true"><svg aria-hidden="true"><use href="#i-cube"/></svg>SOLID</button>
-      <button type="button" id="tWire" aria-pressed="false"><svg aria-hidden="true"><use href="#i-grid"/></svg>CAD WIRE</button>
-      <button type="button" id="tScan" aria-pressed="true"><svg aria-hidden="true"><use href="#i-scan"/></svg>CMM SCAN</button>
+  <div class="stage-wrap">
+    <div class="stage" id="stage" aria-label="Interactive 3D model of an open two-stage gearbox (illustrative)">
+      <canvas id="cad" aria-hidden="true"></canvas>
+      <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+      <svg class="fallback" viewBox="0 0 400 400" aria-hidden="true"><g fill="none" stroke="#A9C1F5" stroke-width="1" opacity=".7" id="fbBlisk"></g></svg>
     </div>
-    <p class="note">Illustrative gearbox model — not a customer design. Drag to rotate.</p>
+    <div class="toggles" role="group" aria-label="3D view mode">
+      <button type="button" id="tSolid" aria-pressed="true">Solid steel</button>
+      <button type="button" id="tWire" aria-pressed="false">CAD wireframe</button>
+      <button type="button" id="tScan" aria-pressed="false">CMM scan</button>
+    </div>
+    <p class="note">Illustrative two-stage gearbox — <span id="hudView">solid steel</span> view. Drag to rotate.</p>
   </div>
 </section>
 
 <!-- TRUST -->
 <div class="trust light" aria-label="Certifications and registrations">
-  <ul class="wrap" style="padding:0">
-    <li class="rv"><a href="https://witcoinc.com/files/as9100-certificate.pdf"><svg aria-hidden="true"><use href="#i-plane"/></svg><strong>AS9100 CERTIFIED</strong><small>Certificate · PDF</small></a></li>
-    <li class="rv" style="--d:.05s"><a href="https://witcoinc.com/files/itar_registration.pdf"><svg aria-hidden="true"><use href="#i-shield"/></svg><strong>ITAR REGISTERED</strong><small>CAGE 3FNW6</small></a></li>
-    <li class="rv" style="--d:.1s"><a href="https://witcoinc.com/files/NADCAP.pdf"><svg aria-hidden="true"><use href="#i-net"/></svg><strong>NADCAP NETWORK</strong><small>Certified supplier network</small></a></li>
-    <li class="rv" style="--d:.15s"><a href="https://witcoinc.com/files/iso9001_certificate.pdf"><svg aria-hidden="true"><use href="#i-badge"/></svg><strong>ISO 9001:2015</strong><small>Since 2002 · PDF</small></a></li>
-    <li class="rv" style="--d:.2s"><a href="https://witcoinc.com/files/wbenc_certificate.pdf"><svg aria-hidden="true"><use href="#i-user"/></svg><strong>WBENC WOMAN-OWNED</strong><small>Certificate · PDF</small></a></li>
-    <li class="rv" style="--d:.25s"><a href="#quality"><svg aria-hidden="true"><use href="#i-scan"/></svg><strong>ZEISS PRISMO CMM</strong><small>Sub-micron inspection</small></a></li>
+  <ul class="wrap plates">
+    <li class="plate rv" style="--d:0s"><a href="https://witcoinc.com/files/as9100-certificate.pdf"><span class="pl-k">Certified</span><strong>AS9100</strong><small>Aerospace quality system · PDF</small></a></li>
+    <li class="plate rv" style="--d:0.05s"><a href="https://witcoinc.com/files/itar_registration.pdf"><span class="pl-k">Registered</span><strong>ITAR</strong><small>Registration letter · PDF</small></a><button type="button" class="copy" data-copy="3FNW6" aria-label="Copy CAGE code 3FNW6">CAGE <code>3FNW6</code><svg aria-hidden="true"><use href="#i-copy"/></svg></button></li>
+    <li class="plate rv" style="--d:0.1s"><a href="https://witcoinc.com/files/NADCAP.pdf"><span class="pl-k">Supplier network</span><strong>NADCAP</strong><small>Certified finishing partners · PDF</small></a></li>
+    <li class="plate rv" style="--d:0.15s"><a href="https://witcoinc.com/files/iso9001_certificate.pdf"><span class="pl-k">Certified since 2002</span><strong>ISO 9001:2015</strong><small>Quality management · PDF</small></a></li>
+    <li class="plate rv" style="--d:0.2s"><a href="https://witcoinc.com/files/wbenc_certificate.pdf"><span class="pl-k">Certified</span><strong>WBENC</strong><small>Woman-owned business · PDF</small></a></li>
+    <li class="plate rv" style="--d:0.25s"><a href="#quality"><span class="pl-k">Inspection</span><strong>Zeiss Prismo</strong><small>Super Accurate CMM</small></a></li>
   </ul>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- CAPABILITIES -->
 <section class="block wrap light" id="capabilities" aria-labelledby="capH">
@@ -580,19 +640,19 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
       <h3 class="dec">PROTOTYPING &amp; CAD/CAM</h3>
       <p class="big">Rapid NPI prototyping for complex geometries.</p>
       <p>Staff engineers review every part for manufacturability and recommend design changes that lower total cost. Prototypes range from 3D virtual models and early concepts to functional and production-ready parts.</p>
-      <div class="art"><span class="hud">SOLID EDGE · <i>DFM</i></span><span class="rec">MODEL</span>
+      <div class="art"><span class="hud">SOLID EDGE · <i>DFM</i></span>
 <svg viewBox="0 0 300 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true" fill="none">
-<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" stroke="#7BA4D7" stroke-opacity=".28"/>
-<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" stroke="#7BA4D7" stroke-width="1.6" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.75;1" dur="6s" repeatCount="indefinite"/></path>
-<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" fill="#7BA4D7" fill-opacity="0"><animate attributeName="fill-opacity" values="0;0;.08;.08;0" keyTimes="0;.72;.8;.95;1" dur="6s" repeatCount="indefinite"/></path>
-<circle cx="145" cy="128" r="9" stroke="#7BA4D7"/><circle cx="215" cy="100" r="7" stroke="#7BA4D7"/>
-<path d="M145 115v26M132 128h26M215 89v22M204 100h22" stroke="#7BA4D7" stroke-opacity=".35" stroke-dasharray="3 2"/>
-<g stroke="#E8505B" stroke-width=".9"><path d="M50 40H250M50 35v10M250 35v10"/><path d="M265 60V150M260 60h10M260 150h10"/></g>
-<g font-family="IBM Plex Mono" font-size="8" fill="#E8505B"><text x="150" y="33" text-anchor="middle">PMI · DATUM A–B</text></g>
-<g font-family="IBM Plex Mono" font-size="8"><rect x="40" y="160" width="14" height="13" stroke="#7BA4D7"/><text x="44" y="170" fill="#7BA4D7">A</text><rect x="240" y="160" width="14" height="13" stroke="#7BA4D7"/><text x="244" y="170" fill="#7BA4D7">B</text>
-<rect x="105" y="160" width="90" height="13" stroke="#E8505B"/><path d="M125 160v13M163 160v13M179 160v13" stroke="#E8505B"/><text x="111" y="170" fill="#E8505B">⌖</text><text x="129" y="170" fill="#E8505B">.0001</text><text x="167" y="170" fill="#E8505B">A</text><text x="183" y="170" fill="#E8505B">B</text></g>
+<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" stroke="#A9C1F5" stroke-opacity=".28"/>
+<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" stroke="#A9C1F5" stroke-width="1.6" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.75;1" dur="6s" repeatCount="indefinite"/></path>
+<path d="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" fill="#A9C1F5" fill-opacity="0"><animate attributeName="fill-opacity" values="0;0;.08;.08;0" keyTimes="0;.72;.8;.95;1" dur="6s" repeatCount="indefinite"/></path>
+<circle cx="145" cy="128" r="9" stroke="#A9C1F5"/><circle cx="215" cy="100" r="7" stroke="#A9C1F5"/>
+<path d="M145 115v26M132 128h26M215 89v22M204 100h22" stroke="#A9C1F5" stroke-opacity=".35" stroke-dasharray="3 2"/>
+<g stroke="#E0A15E" stroke-width=".9"><path d="M50 40H250M50 35v10M250 35v10"/><path d="M265 60V150M260 60h10M260 150h10"/></g>
+<g font-family="IBM Plex Mono" font-size="8" fill="#E0A15E"><text x="150" y="33" text-anchor="middle">PMI · DATUM A–B</text></g>
+<g font-family="IBM Plex Mono" font-size="8"><rect x="40" y="160" width="14" height="13" stroke="#A9C1F5"/><text x="44" y="170" fill="#A9C1F5">A</text><rect x="240" y="160" width="14" height="13" stroke="#A9C1F5"/><text x="244" y="170" fill="#A9C1F5">B</text>
+<rect x="105" y="160" width="90" height="13" stroke="#E0A15E"/><path d="M125 160v13M163 160v13M179 160v13" stroke="#E0A15E"/><text x="111" y="170" fill="#E0A15E">⌖</text><text x="129" y="170" fill="#E0A15E">.0001</text><text x="167" y="170" fill="#E0A15E">A</text><text x="183" y="170" fill="#E0A15E">B</text></g>
 <g><animateMotion path="M50 150 V80 H110 V105 H180 V60 H250 V150 Z" keyPoints="0;1;1" keyTimes="0;.75;1" calcMode="linear" dur="6s" repeatCount="indefinite"/>
-<path d="M-12 0H-4M4 0H12M0 -12V-4M0 4V12" stroke="#fff" stroke-width=".9"/><rect x="-3.5" y="-3.5" width="7" height="7" stroke="#E8505B" stroke-width="1.2"/></g>
+<path d="M-12 0H-4M4 0H12M0 -12V-4M0 4V12" stroke="#fff" stroke-width=".9"/><rect x="-3.5" y="-3.5" width="7" height="7" stroke="#E0A15E" stroke-width="1.2"/></g>
 </svg></div>
       <dl><dt>CAD/CAM</dt><dd>Solid Edge · GibbsCAM</dd><dt>Models</dt><dd>3D with embedded PMI</dd><dt>Reverse eng.</dt><dd>via Zeiss Prismo CMM</dd></dl>
       <a class="src" href="https://witcoinc.com/design-engineering/prototyping">witcoinc.com / prototyping <svg width="14" height="14" aria-hidden="true"><use href="#i-ext"/></svg></a>
@@ -603,20 +663,20 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
       <h3 class="dec">MULTI-AXIS PRODUCTION</h3>
       <p class="big">5-axis milling &amp; 6-axis turning in titanium and exotic alloys.</p>
       <p>Over 40 CNC machines, including three 5-axis machining centers and 21 mills. Newer equipment shortens setups and load times and holds tighter tolerances — more throughput, lower cost per part.</p>
-      <div class="art"><span class="hud">TOOLPATH · <i>5-AXIS</i></span><span class="rec">CUTTING</span>
+      <div class="art"><span class="hud">TOOLPATH · <i>5-AXIS</i></span>
 <svg viewBox="0 0 300 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true" fill="none">
-<rect x="40" y="38" width="220" height="122" rx="3" stroke="#7BA4D7" stroke-opacity=".45"/>
-<rect x="70" y="56" width="160" height="84" rx="9" stroke="#7BA4D7" stroke-opacity=".8"/>
-<path d="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" stroke="#7BA4D7" stroke-opacity=".22" stroke-dasharray="2 3"/>
-<path d="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" stroke="#7BA4D7" stroke-opacity=".2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.85;1" dur="7s" repeatCount="indefinite"/></path>
+<rect x="40" y="38" width="220" height="122" rx="3" stroke="#A9C1F5" stroke-opacity=".45"/>
+<rect x="70" y="56" width="160" height="84" rx="9" stroke="#A9C1F5" stroke-opacity=".8"/>
+<path d="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" stroke="#A9C1F5" stroke-opacity=".22" stroke-dasharray="2 3"/>
+<path d="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" stroke="#A9C1F5" stroke-opacity=".2" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.85;1" dur="7s" repeatCount="indefinite"/></path>
 <path d="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" stroke="#fff" stroke-opacity=".85" stroke-width="1" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.85;1" dur="7s" repeatCount="indefinite"/></path>
 <g><animateMotion path="M82 67 H218 V79 H82 V91 H218 V103 H82 V115 H218 V127 H82" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear" dur="7s" repeatCount="indefinite"/>
-<circle r="11" fill="#7BA4D7" fill-opacity=".12"><animate attributeName="r" values="9;13;9" dur=".6s" repeatCount="indefinite"/></circle>
-<circle r="7" fill="#0A1322" stroke="#fff" stroke-width="1.1"/>
-<g stroke="#7BA4D7" stroke-width="1.2"><path d="M-6 0H6M0 -6V6"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur=".35s" repeatCount="indefinite"/></g>
-<circle r="1.8" fill="#E8505B"/></g>
-<g font-family="IBM Plex Mono" font-size="8" fill="#E8505B"><text x="40" y="176">A ±120° · B 360° · TOL .0001"</text></g>
-<path d="M262 60a40 40 0 0 1 0 70" stroke="#E8505B" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" repeatCount="indefinite"/></path>
+<circle r="11" fill="#A9C1F5" fill-opacity=".12"><animate attributeName="r" values="9;13;9" dur=".6s" repeatCount="indefinite"/></circle>
+<circle r="7" fill="#0B1222" stroke="#fff" stroke-width="1.1"/>
+<g stroke="#A9C1F5" stroke-width="1.2"><path d="M-6 0H6M0 -6V6"/><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur=".35s" repeatCount="indefinite"/></g>
+<circle r="1.8" fill="#E0A15E"/></g>
+<g font-family="IBM Plex Mono" font-size="8" fill="#E0A15E"><text x="40" y="176">A ±120° · B 360° · TOL .0001"</text></g>
+<path d="M262 60a40 40 0 0 1 0 70" stroke="#E0A15E" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1s" repeatCount="indefinite"/></path>
 </svg></div>
       <dl><dt>5-axis envelope</dt><dd>X 25.6" · Y 30.1" · Z 20.5"</dd><dt>Milling max</dt><dd>X 50" · Y 26" · Z 25"</dd><dt>Turning max</dt><dd>Ø 23.62" × 80"</dd><dt>Tolerance</dt><dd>.0001"</dd></dl>
       <a class="src" href="https://witcoinc.com/cnc-precision-machining/milling-turning">witcoinc.com / milling-turning <svg width="14" height="14" aria-hidden="true"><use href="#i-ext"/></svg></a>
@@ -627,17 +687,17 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
       <h3 class="dec">ZERO-DEFECT METROLOGY</h3>
       <p class="big">Full Zeiss Prismo CMM validation &amp; JIT/EDI delivery.</p>
       <p>A Zeiss Prismo Super Accurate CMM with VAST probe checks size, form and position in one run. Parts pass internal qualification before customer approval, then ship on blanket orders, Just-in-Time releases and EDI.</p>
-      <div class="art"><span class="hud">ZEISS PRISMO · <i>GEAR PKG</i></span><span class="rec">PROBING</span>
+      <div class="art"><span class="hud">ZEISS PRISMO · <i>GEAR PKG</i></span>
 <svg viewBox="0 0 300 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true" fill="none">
-<circle cx="150" cy="108" r="56" stroke="#7BA4D7" stroke-opacity=".25" stroke-dasharray="2 4"/>
+<circle cx="150" cy="108" r="56" stroke="#A9C1F5" stroke-opacity=".25" stroke-dasharray="2 4"/>
 <g><animateTransform attributeName="transform" type="rotate" values="0 150 108;45 150 108;45 150 108;90 150 108;90 150 108;135 150 108;135 150 108;180 150 108;180 150 108;225 150 108;225 150 108;270 150 108;270 150 108;315 150 108;315 150 108;360 150 108;360 150 108" keyTimes="0;0.0625;0.125;0.1875;0.25;0.3125;0.375;0.4375;0.5;0.5625;0.625;0.6875;0.75;0.8125;0.875;0.9375;1" dur="8s" repeatCount="indefinite" calcMode="spline" keySplines=".6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1;.6 0 .3 1"/>
-<path d="M159.4 73.3 L164.8 66.6 L168.8 68.2 L167.9 76.8 L172.0 79.5 L172.0 79.5 L179.5 75.4 L182.6 78.5 L178.5 86.0 L181.2 90.1 L181.2 90.1 L189.8 89.2 L191.4 93.2 L184.7 98.6 L185.7 103.4 L185.7 103.4 L193.9 105.8 L193.9 110.2 L185.7 112.6 L184.7 117.4 L184.7 117.4 L191.4 122.8 L189.8 126.8 L181.2 125.9 L178.5 130.0 L178.5 130.0 L182.6 137.5 L179.5 140.6 L172.0 136.5 L167.9 139.2 L167.9 139.2 L168.8 147.8 L164.8 149.4 L159.4 142.7 L154.6 143.7 L154.6 143.7 L152.2 151.9 L147.8 151.9 L145.4 143.7 L140.6 142.7 L140.6 142.7 L135.2 149.4 L131.2 147.8 L132.1 139.2 L128.0 136.5 L128.0 136.5 L120.5 140.6 L117.4 137.5 L121.5 130.0 L118.8 125.9 L118.8 125.9 L110.2 126.8 L108.6 122.8 L115.3 117.4 L114.3 112.6 L114.3 112.6 L106.1 110.2 L106.1 105.8 L114.3 103.4 L115.3 98.6 L115.3 98.6 L108.6 93.2 L110.2 89.2 L118.8 90.1 L121.5 86.0 L121.5 86.0 L117.4 78.5 L120.5 75.4 L128.0 79.5 L132.1 76.8 L132.1 76.8 L131.2 68.2 L135.2 66.6 L140.6 73.3 L145.4 72.3 L145.4 72.3 L147.8 64.1 L152.2 64.1 L154.6 72.3 L159.4 73.3 Z" stroke="#7BA4D7" stroke-width="1.2" fill="#7BA4D7" fill-opacity=".06"/><circle cx="150" cy="108" r="10" stroke="#7BA4D7"/><circle cx="150" cy="108" r="40" stroke="#E8505B" stroke-opacity=".5" stroke-dasharray="2 3"/></g>
+<path d="M159.4 73.3 L164.8 66.6 L168.8 68.2 L167.9 76.8 L172.0 79.5 L172.0 79.5 L179.5 75.4 L182.6 78.5 L178.5 86.0 L181.2 90.1 L181.2 90.1 L189.8 89.2 L191.4 93.2 L184.7 98.6 L185.7 103.4 L185.7 103.4 L193.9 105.8 L193.9 110.2 L185.7 112.6 L184.7 117.4 L184.7 117.4 L191.4 122.8 L189.8 126.8 L181.2 125.9 L178.5 130.0 L178.5 130.0 L182.6 137.5 L179.5 140.6 L172.0 136.5 L167.9 139.2 L167.9 139.2 L168.8 147.8 L164.8 149.4 L159.4 142.7 L154.6 143.7 L154.6 143.7 L152.2 151.9 L147.8 151.9 L145.4 143.7 L140.6 142.7 L140.6 142.7 L135.2 149.4 L131.2 147.8 L132.1 139.2 L128.0 136.5 L128.0 136.5 L120.5 140.6 L117.4 137.5 L121.5 130.0 L118.8 125.9 L118.8 125.9 L110.2 126.8 L108.6 122.8 L115.3 117.4 L114.3 112.6 L114.3 112.6 L106.1 110.2 L106.1 105.8 L114.3 103.4 L115.3 98.6 L115.3 98.6 L108.6 93.2 L110.2 89.2 L118.8 90.1 L121.5 86.0 L121.5 86.0 L117.4 78.5 L120.5 75.4 L128.0 79.5 L132.1 76.8 L132.1 76.8 L131.2 68.2 L135.2 66.6 L140.6 73.3 L145.4 72.3 L145.4 72.3 L147.8 64.1 L152.2 64.1 L154.6 72.3 L159.4 73.3 Z" stroke="#A9C1F5" stroke-width="1.2" fill="#A9C1F5" fill-opacity=".06"/><circle cx="150" cy="108" r="10" stroke="#A9C1F5"/><circle cx="150" cy="108" r="40" stroke="#E0A15E" stroke-opacity=".5" stroke-dasharray="2 3"/></g>
 <g><animateTransform attributeName="transform" type="translate" values="0 -20;0 -20;0 0;0 0;0 -20" keyTimes="0;.55;.72;.82;1" dur="1s" repeatCount="indefinite"/>
-<path d="M150 -10V56" stroke="#fff" stroke-opacity=".8"/><rect x="141" y="-10" width="18" height="18" stroke="#7BA4D7" fill="#0A1322"/><circle cx="150" cy="60" r="4" fill="#E8505B"/></g>
-<circle cx="150" cy="64" r="2" stroke="#E8505B"><animate attributeName="r" values="2;2;16" keyTimes="0;.72;1" dur="1s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;1;0" keyTimes="0;.72;1" dur="1s" repeatCount="indefinite"/></circle>
-<path d="M232 168H292" stroke="#7BA4D7" stroke-opacity=".4"/><rect x="236" width="4" fill="#E8505B" fill-opacity=".8"><animate attributeName="height" values="14;8;16;24;14" dur="4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="y" values="154;160;152;144;154" dur="4s" begin="0.0s" repeatCount="indefinite"/></rect><rect x="243" width="4" fill="#7BA4D7" fill-opacity=".8"><animate attributeName="height" values="5;6;21;7;5" dur="4s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="163;162;147;161;163" dur="4s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="250" width="4" fill="#7BA4D7" fill-opacity=".8"><animate attributeName="height" values="15;22;5;20;15" dur="4s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="153;146;163;148;153" dur="4s" begin="0.4s" repeatCount="indefinite"/></rect><rect x="257" width="4" fill="#E8505B" fill-opacity=".8"><animate attributeName="height" values="10;5;6;17;10" dur="4s" begin="0.6000000000000001s" repeatCount="indefinite"/><animate attributeName="y" values="158;163;162;151;158" dur="4s" begin="0.6000000000000001s" repeatCount="indefinite"/></rect><rect x="264" width="4" fill="#7BA4D7" fill-opacity=".8"><animate attributeName="height" values="17;6;11;6;17" dur="4s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="151;162;157;162;151" dur="4s" begin="0.8s" repeatCount="indefinite"/></rect><rect x="271" width="4" fill="#7BA4D7" fill-opacity=".8"><animate attributeName="height" values="21;17;5;22;21" dur="4s" begin="1.0s" repeatCount="indefinite"/><animate attributeName="y" values="147;151;163;146;147" dur="4s" begin="1.0s" repeatCount="indefinite"/></rect><rect x="278" width="4" fill="#E8505B" fill-opacity=".8"><animate attributeName="height" values="7;11;24;24;7" dur="4s" begin="1.2000000000000002s" repeatCount="indefinite"/><animate attributeName="y" values="161;157;144;144;161" dur="4s" begin="1.2000000000000002s" repeatCount="indefinite"/></rect><rect x="285" width="4" fill="#7BA4D7" fill-opacity=".8"><animate attributeName="height" values="22;5;22;22;22" dur="4s" begin="1.4000000000000001s" repeatCount="indefinite"/><animate attributeName="y" values="146;163;146;146;146" dur="4s" begin="1.4000000000000001s" repeatCount="indefinite"/></rect>
-<text x="232" y="180" font-family="IBM Plex Mono" font-size="7.5" fill="#6E7E98">DEVIATION</text>
-<text x="20" y="180" font-family="IBM Plex Mono" font-size="8" fill="#E8505B">SUB-MICRON · SHAFTS TO 48"</text>
+<path d="M150 -10V56" stroke="#fff" stroke-opacity=".8"/><rect x="141" y="-10" width="18" height="18" stroke="#A9C1F5" fill="#0B1222"/><circle cx="150" cy="60" r="4" fill="#E0A15E"/></g>
+<circle cx="150" cy="64" r="2" stroke="#E0A15E"><animate attributeName="r" values="2;2;16" keyTimes="0;.72;1" dur="1s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;1;0" keyTimes="0;.72;1" dur="1s" repeatCount="indefinite"/></circle>
+<path d="M232 168H292" stroke="#A9C1F5" stroke-opacity=".4"/><rect x="236" width="4" fill="#E0A15E" fill-opacity=".8"><animate attributeName="height" values="14;8;16;24;14" dur="4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="y" values="154;160;152;144;154" dur="4s" begin="0.0s" repeatCount="indefinite"/></rect><rect x="243" width="4" fill="#A9C1F5" fill-opacity=".8"><animate attributeName="height" values="5;6;21;7;5" dur="4s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="y" values="163;162;147;161;163" dur="4s" begin="0.2s" repeatCount="indefinite"/></rect><rect x="250" width="4" fill="#A9C1F5" fill-opacity=".8"><animate attributeName="height" values="15;22;5;20;15" dur="4s" begin="0.4s" repeatCount="indefinite"/><animate attributeName="y" values="153;146;163;148;153" dur="4s" begin="0.4s" repeatCount="indefinite"/></rect><rect x="257" width="4" fill="#E0A15E" fill-opacity=".8"><animate attributeName="height" values="10;5;6;17;10" dur="4s" begin="0.6000000000000001s" repeatCount="indefinite"/><animate attributeName="y" values="158;163;162;151;158" dur="4s" begin="0.6000000000000001s" repeatCount="indefinite"/></rect><rect x="264" width="4" fill="#A9C1F5" fill-opacity=".8"><animate attributeName="height" values="17;6;11;6;17" dur="4s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="151;162;157;162;151" dur="4s" begin="0.8s" repeatCount="indefinite"/></rect><rect x="271" width="4" fill="#A9C1F5" fill-opacity=".8"><animate attributeName="height" values="21;17;5;22;21" dur="4s" begin="1.0s" repeatCount="indefinite"/><animate attributeName="y" values="147;151;163;146;147" dur="4s" begin="1.0s" repeatCount="indefinite"/></rect><rect x="278" width="4" fill="#E0A15E" fill-opacity=".8"><animate attributeName="height" values="7;11;24;24;7" dur="4s" begin="1.2000000000000002s" repeatCount="indefinite"/><animate attributeName="y" values="161;157;144;144;161" dur="4s" begin="1.2000000000000002s" repeatCount="indefinite"/></rect><rect x="285" width="4" fill="#A9C1F5" fill-opacity=".8"><animate attributeName="height" values="22;5;22;22;22" dur="4s" begin="1.4000000000000001s" repeatCount="indefinite"/><animate attributeName="y" values="146;163;146;146;146" dur="4s" begin="1.4000000000000001s" repeatCount="indefinite"/></rect>
+<text x="232" y="180" font-family="IBM Plex Mono" font-size="7.5" fill="#8090A6">DEVIATION</text>
+<text x="20" y="180" font-family="IBM Plex Mono" font-size="8" fill="#E0A15E">SUB-MICRON · SHAFTS TO 48"</text>
 </svg></div>
       <dl><dt>CMM</dt><dd>Zeiss Prismo · VAST probe</dd><dt>Shafts</dt><dd>up to 48" with gear package</dd><dt>Supply</dt><dd>Blanket · JIT · EDI 850/856</dd></dl>
       <a class="src" href="https://witcoinc.com/quality">witcoinc.com / quality <svg width="14" height="14" aria-hidden="true"><use href="#i-ext"/></svg></a>
@@ -680,7 +740,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
   </div>
 </section>
 
-<section class="block wrap light has-dwg" id="markets" aria-labelledby="mkH">
+<section class="block wrap light alt has-dwg" id="markets" aria-labelledby="mkH">
   <div class="dwg" aria-hidden="true"><div class="dwg-dim"><span>SEC. 03 · MARKETS SERVED</span></div><div class="dwg-word">MARKETS</div><div class="dwg-cl"></div><div class="dwg-tb">SCALE 1:1 · SEC. 03</div></div>
   <div class="head">
     <div><div class="label rv" data-sec="SEC. 03">Markets served</div><h2 id="mkH" class="rv">Four industries. <span>One quality system.</span></h2></div>
@@ -700,7 +760,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 </section>
 
 <!-- CONFIGURATOR -->
-<section class="block wrap" id="configurator" aria-labelledby="cfH">
+<section class="block wrap light" id="configurator" aria-labelledby="cfH">
   <div class="head">
     <div><div class="label rv" data-sec="SEC. 04">RFQ configurator</div><h2 id="cfH" class="rv">Part reliability <span>&amp; cost check.</span></h2></div>
     <p class="rv">Describe your part and see, in real time, which of Witco's published machines, inspection and supply programs fit it — then send the summary as a quote request.</p>
@@ -764,7 +824,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 </section>
 
 <!-- QUALITY -->
-<section class="block wrap light has-dwg" id="quality" aria-labelledby="qH">
+<section class="block wrap light alt has-dwg" id="quality" aria-labelledby="qH">
   <div class="dwg" aria-hidden="true"><div class="dwg-dim"><span>SEC. 05 · ZERO DEFECTS</span></div><div class="dwg-word">QUALITY</div><div class="dwg-cl"></div><div class="dwg-tb">SCALE 1:1 · SEC. 05</div></div>
   <div class="head">
     <div><div class="label rv" data-sec="SEC. 05">Quality</div><h2 id="qH" class="rv">Zero defects is <span>a state of mind.</span></h2></div>
@@ -794,7 +854,24 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
       </ul>
     </div>
   </div>
-  <div class="story rv">
+</section>
+
+<!-- COMPANY -->
+<section class="block wrap light" id="company" aria-labelledby="coH">
+  <div class="heritage">
+    <figure class="h-photo rv">
+      <img src="media/site/witco-avoca-aerial.jpg" width="739" height="602" loading="lazy" alt="Aerial view of the Witco plant, a long white building beside a red barn, on its 40-acre farm site in Avoca, Michigan">
+      <figcaption>The Witco plant on the original 40-acre farm, Avoca, MI. <span>Photo: witcoinc.com</span></figcaption>
+    </figure>
+    <div class="h-text">
+      <div class="label rv" data-sec="SEC. 06">Our story</div>
+      <h2 id="coH" class="rv">From a five-car garage <span>to a 50,000 sq ft plant — on the same farm.</span></h2>
+      <p class="rv">In 1977 Witco began machining components in a five-car garage on a 40-acre farm in Avoca, Michigan, about an hour north of Detroit. The company was built on three principles that still guide every job: first-time quality, on-time delivery and complete dedication to customer satisfaction.</p>
+      <p class="rv">Today the plant stands on that same farm and ships to a global customer base, while staying close to home: Witco has sponsored the FIRST Robotics team at Capac High School since 2007, supported Special Olympics since 1997 and opens its doors to local students on Manufacturing Day.</p>
+      <figure class="h-ph rv"><div class="ph-box" role="img" aria-label="Placeholder for a photo of the Witco team or shop floor"><span>Team / shop-floor photo</span><small>To be supplied by Witco · 4:3</small></div></figure>
+    </div>
+  </div>
+  <div class="story rv" style="margin-top:56px">
     <div><b>1977</b><p>Founded in a 5-car garage on a 40-acre farm in Avoca, Michigan.</p></div>
     <div><b>50,000 ft²</b><p>Today's facility stands on the same farm: two docks, temperature-controlled assembly, gantry crane.</p></div>
     <div><b>18×</b><p>Unisys Supplier Excellence Award recipient. Amphenol Certified Supplier, 1998.</p></div>
@@ -803,9 +880,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 </section>
 
 <!-- FAQ -->
-<section class="block wrap light" id="faq" aria-labelledby="fH" style="padding-top:0">
+<section class="block wrap light alt" id="faq" aria-labelledby="fH">
   <div class="faq">
-    <div><div class="label rv" data-sec="SEC. 06">FAQ</div><h2 id="fH" class="rv">Technical <span>questions, answered.</span></h2></div>
+    <div><div class="label rv" data-sec="SEC. 07">FAQ</div><h2 id="fH" class="rv">Technical <span>questions, answered.</span></h2></div>
     <div class="rv">
       <details><summary>Is Witco ITAR registered and cleared for defense work?<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>Yes. Witco is ITAR registered (CAGE <code>3FNW6</code>), a government prime contractor, and a member of the Michigan PTAC and DC3. It has supplied the U.S. military for years as a second- and third-tier supplier: gun mounts and gun parts, vision system components, wheeled vehicle and tank components, and aircraft fuel system components.</p></div></details>
       <details><summary>Which exotic alloys can you machine?<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>Titanium, Inconel, Monel, Hastelloy, A286, Greek Ascoloy, 17-4PH and other precipitation-hardening stainless, tungsten and magnesium — plus platinum, palladium and iridium for medical work. Stock forms include bar, plate, tubing, forgings, extrusions, sawed blanks and investment, sand and die castings.</p></div></details>
@@ -819,9 +896,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
 </section>
 
 <!-- RFQ -->
-<section class="block wrap" id="rfq" aria-labelledby="rH">
+<section class="block wrap light" id="rfq" aria-labelledby="rH">
   <div class="head">
-    <div><div class="label rv" data-sec="SEC. 07">Request for quote</div><h2 id="rH" class="rv">Send the drawing. <span>We'll take it from there.</span></h2></div>
+    <div><div class="label rv" data-sec="SEC. 08">Request for quote</div><h2 id="rH" class="rv">Send the drawing. <span>We'll take it from there.</span></h2></div>
     <p class="rv">All information is used only to prepare your quote and is kept strictly confidential.</p>
   </div>
   <div class="rfq">
@@ -834,6 +911,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
     </div>
     <form class="panel rv" id="rfqForm" novalidate style="--d:.08s" aria-label="Request for quote form">
       <div class="grid2">
+        <div class="full drop"><label class="fl" for="fFile">Drawing or CAD file</label><input type="file" id="fFile" accept=".pdf,.step,.stp,.igs,.iges,.dwg,.dxf,.x_t,.sldprt,.zip"><small>PDF, STEP, IGES, DWG, DXF, Parasolid or ZIP. Kept strictly confidential.</small></div>
         <div><label class="fl" for="fCo">Company <i>*</i></label><input type="text" id="fCo" autocomplete="organization" required></div>
         <div><label class="fl" for="fNm">First &amp; last name <i>*</i></label><input type="text" id="fNm" autocomplete="name" required></div>
         <div><label class="fl" for="fEm">E-mail <i>*</i></label><input type="email" id="fEm" autocomplete="email" required></div>
@@ -844,7 +922,6 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
         <div><label class="fl" for="fTl">Tolerance specifications <i>*</i></label><input type="text" id="fTl" required></div>
         <div><label class="fl" for="fFn">Finishing requirements</label><input type="text" id="fFn"></div>
         <div><label class="fl" for="fDt">Parts needed by <i>*</i></label><input type="date" id="fDt" required></div>
-        <div class="full"><label class="fl" for="fFile">Drawing / CAD file</label><input type="file" id="fFile" accept=".pdf,.step,.stp,.igs,.iges,.dwg,.dxf,.x_t,.sldprt,.zip"></div>
         <div class="full"><label class="fl" for="fNo">Special instructions</label><textarea id="fNo"></textarea></div>
         <div class="full"><button class="btn btn-primary" type="submit">Submit RFQ <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
       </div>
@@ -862,6 +939,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
         <p>CNC precision machining, gears and assemblies for aerospace, defense, medical and industrial customers since 1977.</p>
         <div class="fmail">sales@witcoinc.com</div>
         <p style="margin-top:10px">810-387-4231 · 6401 Bricker Rd., Avoca, MI 48006</p>
+        <p class="made">Machined in Avoca, Michigan, USA · since 1977</p>
       </div>
       <div><h5>Machining</h5><ul>
         <li><a href="https://witcoinc.com/cnc-precision-machining/milling-turning">CNC milling &amp; turning</a></li>
@@ -923,6 +1001,19 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
     m.addEventListener('pointermove',function(e){var r=m.getBoundingClientRect();m.style.setProperty('--mx',(e.clientX-r.left)+'px');m.style.setProperty('--my',(e.clientY-r.top)+'px')});
   });
 
+  /* fast-track RFQ: jump to the drawing upload */
+  var dr=document.getElementById('directRfq');
+  if(dr)dr.addEventListener('click',function(e){e.preventDefault();var f=document.getElementById('fFile'),t=document.getElementById('rfq');
+    t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setTimeout(function(){f.focus({preventScroll:true})},reduce?0:900);history.replaceState(null,'','#rfq')});
+  /* copy CAGE code */
+  var toast=document.getElementById('toast'),tt;
+  function say(html){toast.innerHTML=html;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600)}
+  root.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.dataset.copy;
+    function ok(){say('CAGE <code>'+v+'</code> copied')}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(ok,function(){fallback()});else fallback();
+    function fallback(){var ta=document.createElement('textarea');ta.value=v;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch(e){say('CAGE code: <code>'+v+'</code>')}ta.remove()}
+  })});
+
   /* SMIL line art: run only while visible; static frame for reduced motion */
   root.querySelectorAll('.mod .art svg').forEach(function(svg,i){
     if(!svg.pauseAnimations)return;
@@ -964,7 +1055,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-we
   }
 
   /* ---------- schematics ---------- */
-  var C='#7BA4D7',A='#E8505B',D='#6E7E98';
+  var C='#A9C1F5',A='#E0A15E',D='#8090A6';
   function txt(x,y,s,c,anchor){return '<text x="'+x+'" y="'+y+'" fill="'+(c||D)+'" font-family="IBM Plex Mono" font-size="10" letter-spacing=".5"'+(anchor?' text-anchor="'+anchor+'"':'')+'>'+s+'</text>'}
   function dimH(x1,x2,y,label){return '<g stroke="'+A+'" stroke-width=".8"><line x1="'+x1+'" y1="'+y+'" x2="'+x2+'" y2="'+y+'"/><line x1="'+x1+'" y1="'+(y-5)+'" x2="'+x1+'" y2="'+(y+5)+'"/><line x1="'+x2+'" y1="'+(y-5)+'" x2="'+x2+'" y2="'+(y+5)+'"/></g>'+txt((x1+x2)/2,y-7,label,A,'middle')}
   function svgAero(){
@@ -1207,7 +1298,7 @@ const GEARS=[[0,14,.064,.36,.36,.18,1,0],[1,30,.064,.36,.36,.22,-1,6],[1,16,.062
 const PHASE=[0,Math.PI+Math.PI/30,0,Math.PI+Math.PI/36];
 
 const MAT_DEF={
-  housing:{color:0x2d3f5b,metalness:.5,roughness:.46,envMapIntensity:1},
+  housing:{color:0x334155,metalness:.5,roughness:.46,envMapIntensity:1},
   machined:{color:0x7d8692,metalness:.95,roughness:.26,envMapIntensity:1.15},
   gear:{color:0xb4bac3,metalness:1,roughness:.24,envMapIntensity:1.05},
   shaft:{color:0xaab0b9,metalness:1,roughness:.17,envMapIntensity:1.05},
@@ -1218,7 +1309,7 @@ const MAT_DEF={
 function buildGearbox(opt){
   const root=new THREE.Group(),G={},mats=[],lines=[],wires=[];
   function grp(name,parent){const g=new THREE.Group();g.name=name;g.userData.mats={};(parent||root).add(g);G[name]=g;return g}
-  function mat(g,key){let m=g.userData.mats[key];if(!m){m=new THREE.MeshStandardMaterial({...MAT_DEF[key],side:THREE.DoubleSide,transparent:!!opt.transparent});m.emissive=new THREE.Color(0x7ba4d7);m.emissiveIntensity=0;m.userData={h:0,t:0,line:new THREE.LineBasicMaterial({color:0x7ba4d7,transparent:true,opacity:0,depthWrite:false})};g.userData.mats[key]=m;mats.push(m);lines.push(m.userData.line)}return m}
+  function mat(g,key){let m=g.userData.mats[key];if(!m){m=new THREE.MeshStandardMaterial({...MAT_DEF[key],side:THREE.DoubleSide,transparent:!!opt.transparent});m.emissive=new THREE.Color(0xc8d6f0);m.emissiveIntensity=0;m.userData={h:0,t:0,line:new THREE.LineBasicMaterial({color:0xc8d6f0,transparent:true,opacity:0,depthWrite:false})};g.userData.mats[key]=m;mats.push(m);lines.push(m.userData.line)}return m}
   function mesh(geo,g,key,parent,pos,rot){
     const m=new THREE.Mesh(geo,mat(g,key));if(pos)m.position.set(...pos);if(rot)m.rotation.set(...rot);(parent||g).add(m);
     const w=new THREE.LineSegments(edges(geo),m.material.userData.line);w.visible=false;m.add(w);wires.push(w);return m}
@@ -1309,8 +1400,8 @@ function createView(canvas){
   const scene=new THREE.Scene();
   const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromScene(new RoomEnvironment(renderer),.04).texture;pm.dispose();
   const key=new THREE.DirectionalLight(0xffffff,2.1);key.position.set(5,7,6);scene.add(key);
-  const rim=new THREE.DirectionalLight(0x7ba4d7,3.2);rim.position.set(-6,3,-5);scene.add(rim);
-  const warm=new THREE.PointLight(0xe8505b,12,16,2);warm.position.set(4,-2.5,4);scene.add(warm);
+  const rim=new THREE.DirectionalLight(0xc8d6f0,3.2);rim.position.set(-6,3,-5);scene.add(rim);
+  const warm=new THREE.PointLight(0xd9a066,12,16,2);warm.position.set(4,-2.5,4);scene.add(warm);
   scene.add(new THREE.AmbientLight(0x404a5a,.55));
   const camera=new THREE.PerspectiveCamera(30,1,.1,200);
   return {renderer,scene,camera,canvas,w:0,h:0,needs:true,visible:false};
@@ -1322,12 +1413,12 @@ function fit(v){
 }
 function laserKit(width){
   const k=new THREE.Group();
-  const laser=new THREE.Mesh(new THREE.PlaneGeometry(width,.012),new THREE.MeshBasicMaterial({color:0x7ba4d7,transparent:true,opacity:.95,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
+  const laser=new THREE.Mesh(new THREE.PlaneGeometry(width,.012),new THREE.MeshBasicMaterial({color:0xc8d6f0,transparent:true,opacity:.95,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
   const cv=document.createElement('canvas');cv.width=4;cv.height=128;const x=cv.getContext('2d');
-  const gr=x.createLinearGradient(0,0,0,128);gr.addColorStop(0,'rgba(123,164,215,0)');gr.addColorStop(.5,'rgba(123,164,215,.32)');gr.addColorStop(1,'rgba(123,164,215,0)');x.fillStyle=gr;x.fillRect(0,0,4,128);
+  const gr=x.createLinearGradient(0,0,0,128);gr.addColorStop(0,'rgba(169,193,245,0)');gr.addColorStop(.5,'rgba(169,193,245,.32)');gr.addColorStop(1,'rgba(169,193,245,0)');x.fillStyle=gr;x.fillRect(0,0,4,128);
   const glow=new THREE.Mesh(new THREE.PlaneGeometry(width,.45),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cv),transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide}));
-  const probe=new THREE.Mesh(new THREE.SphereGeometry(.045,20,16),new THREE.MeshBasicMaterial({color:0xe8505b}));
-  const stylus=new THREE.Mesh(new THREE.CylinderGeometry(.01,.01,1.1,8),new THREE.MeshBasicMaterial({color:0xe8505b,transparent:true,opacity:.55}));
+  const probe=new THREE.Mesh(new THREE.SphereGeometry(.045,20,16),new THREE.MeshBasicMaterial({color:0xd9a066}));
+  const stylus=new THREE.Mesh(new THREE.CylinderGeometry(.01,.01,1.1,8),new THREE.MeshBasicMaterial({color:0xd9a066,transparent:true,opacity:.55}));
   stylus.rotation.z=Math.PI/2;stylus.position.x=.57;probe.add(stylus);
   k.add(laser,glow,probe);k.userData={laser,glow,probe};return k;
 }
@@ -1346,7 +1437,7 @@ gbH.root.rotation.set(.46,0,0);
 const scanH=laserKit(6.2);scanH.position.z=.62;gbH.root.add(scanH);
 const gridGeo=new THREE.BufferGeometry(),gp=[];for(let i=-8;i<=8;i++){gp.push(-8,i*.5,0,8,i*.5,0,i*.5,-8,0,i*.5,8,0)}
 gridGeo.setAttribute('position',new THREE.Float32BufferAttribute(gp,3));
-const grid=new THREE.LineSegments(gridGeo,new THREE.LineBasicMaterial({color:0x7ba4d7,transparent:true,opacity:.06}));grid.position.z=-4;heroV.scene.add(grid);
+const grid=new THREE.LineSegments(gridGeo,new THREE.LineBasicMaterial({color:0xc8d6f0,transparent:true,opacity:.06}));grid.position.z=-4;heroV.scene.add(grid);
 
 let tx=0,ty=0,cx=0,cy=0,drag=null,dragY=0,heroScroll=0,theta=0;
 window.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5}},{passive:true});
@@ -1356,17 +1447,17 @@ hc.addEventListener('pointermove',e=>{if(drag){dragY=drag.y0+(e.clientX-drag.x)*
 ['pointerup','pointercancel'].forEach(t=>hc.addEventListener(t,()=>{drag=null}));
 
 const tSolid=document.getElementById('tSolid'),tWire=document.getElementById('tWire'),tScan=document.getElementById('tScan');
-const hudView=document.getElementById('hudView'),hudZ=document.getElementById('hudZ'),hudState=document.getElementById('hudState');
-let scanOn=true;
+const hudView=document.getElementById('hudView');
+let scanOn=false;scanH.visible=false;
 const wireState={o:1,w:0};
 function applyWire(){gbH.mats.forEach(m=>{m.opacity=wireState.o;m.depthWrite=wireState.o>.5});gbH.lines.forEach(l=>l.opacity=wireState.w);gbH.wires.forEach(w=>w.visible=wireState.w>.01)}
 function setWire(on){
-  tSolid.setAttribute('aria-pressed',!on);tWire.setAttribute('aria-pressed',on);hudView.textContent=on?'CAD WIREFRAME':'SOLID PBR';
+  tSolid.setAttribute('aria-pressed',!on);tWire.setAttribute('aria-pressed',on);hudView.textContent=on?'CAD wireframe':'solid steel';
   const to={o:on?.08:1,w:on?.6:0};
   if(window.gsap&&!reduce)gsap.to(wireState,{...to,duration:.6,ease:'power2.out',onUpdate:applyWire});else{Object.assign(wireState,to);applyWire()}
 }
 tSolid.addEventListener('click',()=>setWire(false));tWire.addEventListener('click',()=>setWire(true));
-tScan.addEventListener('click',()=>{scanOn=!scanOn;tScan.setAttribute('aria-pressed',scanOn);scanH.visible=scanOn;hudState.textContent=scanOn?'PROBING':'IDLE'});
+tScan.addEventListener('click',()=>{scanOn=!scanOn;tScan.setAttribute('aria-pressed',scanOn);scanH.visible=scanOn});
 
 /* intro: housing settles, shafts drop into their bearing seats */
 const intro={y:0,s:1,scan:1};let introDone=reduce||!window.gsap;
@@ -1393,7 +1484,7 @@ xpV.scene.add(gbS.root);
 const {G}=gbS, g4=gbS.gears[3];
 const scanS=laserKit(3.2);gbS.shafts[2].add(scanS);
 const ringPts=[];for(let i=0;i<=128;i++){const a=i/128*Math.PI*2;ringPts.push(new THREE.Vector3(Math.cos(a)*1.125,Math.sin(a)*1.125,0))}
-const pitch=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(ringPts),new THREE.LineDashedMaterial({color:0xe8505b,dashSize:.06,gapSize:.05,transparent:true,opacity:0}));
+const pitch=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(ringPts),new THREE.LineDashedMaterial({color:0xd9a066,dashSize:.06,gapSize:.05,transparent:true,opacity:0}));
 pitch.computeLineDistances();gbS.shafts[2].add(pitch);
 
 const STEPS=[0,.12,.3,.48,.66,.84];
@@ -1419,8 +1510,8 @@ const CALLOUTS=[
 const coBox=document.getElementById('xpCo'),coSvg=document.getElementById('xpLines');
 CALLOUTS.forEach(c=>{
   c.el=document.createElement('div');c.el.className='co';c.el.innerHTML='<small>'+c.k+'</small>'+c.t;coBox.appendChild(c.el);
-  c.line=document.createElementNS('http://www.w3.org/2000/svg','line');c.line.setAttribute('stroke','#7BA4D7');c.line.setAttribute('stroke-width','1');
-  c.dot=document.createElementNS('http://www.w3.org/2000/svg','circle');c.dot.setAttribute('r','3.5');c.dot.setAttribute('fill','#E8505B');
+  c.line=document.createElementNS('http://www.w3.org/2000/svg','line');c.line.setAttribute('stroke','#A9C1F5');c.line.setAttribute('stroke-width','1');
+  c.dot=document.createElementNS('http://www.w3.org/2000/svg','circle');c.dot.setAttribute('r','3.5');c.dot.setAttribute('fill','#E0A15E');
   coSvg.append(c.line,c.dot);c.a=0;
 });
 
@@ -1543,7 +1634,6 @@ function frame(){
       const y=reduce?.45:Math.sin(t*.8)*1.3*so;scanH.position.y=y;
       const R=gbH.gears[1].userData.r,pp=scanH.userData.probe;
       pp.visible=Math.abs(y)<R*.98;pp.position.x=X1+Math.sqrt(Math.max(0,R*R-y*y));
-      hudZ.textContent=(y>=0?'+':'')+(y*.8).toFixed(3);
     }
     heroV.renderer.render(heroV.scene,cam);
   }
