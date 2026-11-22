@@ -378,6 +378,7 @@ body{margin:0;background:#fff;color:var(--text);font-family:var(--sans);font-siz
 #witco .xp-rail{display:none}
 /* scroll mode (enabled by JS once WebGL is running) */
 #witco .xp.on{height:720vh;padding:0}
+#witco .xp.on.collapsed{height:auto}
 #witco .xp.on .xp-intro{padding-top:clamp(60px,8cqw,110px);margin-bottom:0}
 #witco .xp.on .xp-sticky{position:sticky;top:var(--nav);height:calc(100svh - var(--nav));display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);gap:clamp(16px,3cqw,48px);align-items:center}
 #witco .xp.on .xp-copy{position:relative;z-index:2;display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start}
@@ -1232,27 +1233,81 @@ body{margin:0;background:#fff;color:var(--text);font-family:var(--sans);font-siz
     m.addEventListener('pointermove',function(e){var r=m.getBoundingClientRect();m.style.setProperty('--mx',(e.clientX-r.left)+'px');m.style.setProperty('--my',(e.clientY-r.top)+'px')});
   });
 
-  /* smart anchor jump: skip smoothly-scrolling across the 720vh pinned gearbox */
+  /* smart anchor jump: temporarily collapse & freeze 720vh gearbox so smooth scroll glides cleanly */
+  var _jumpCancel=null;
   function jumpToEl(el,hash){
     if(!el)return;
-    var navEl=root.querySelector('.nav'),nh=navEl?navEl.offsetHeight:72;
-    var targetY=Math.max(0,el.getBoundingClientRect().top+window.scrollY-nh-16);
+    if(_jumpCancel){_jumpCancel();_jumpCancel=null}
+    var html=document.documentElement,navEl=root.querySelector('.nav'),nh=navEl?navEl.offsetHeight:72;
+    var getY=function(node){return Math.max(0,node.getBoundingClientRect().top+window.scrollY-nh-16)};
+    var rawTargetY=getY(el);
+    if(reduce){
+      var p0=html.style.scrollBehavior;html.style.scrollBehavior='auto';
+      window.scrollTo(0,rawTargetY);
+      if(window.__snapGearbox)window.__snapGearbox();
+      html.style.scrollBehavior=p0;
+      if(hash)history.replaceState(null,'',hash);
+      return;
+    }
     var gb=document.getElementById('gearbox'),crossesGb=false;
     if(gb&&gb.classList.contains('on')){
       var gbTop=gb.getBoundingClientRect().top+window.scrollY,gbBot=gbTop+gb.offsetHeight;
-      var lo=Math.min(window.scrollY,targetY),hi=Math.max(window.scrollY,targetY);
+      var lo=Math.min(window.scrollY,rawTargetY),hi=Math.max(window.scrollY,rawTargetY);
       if(lo<gbBot-nh-40&&hi>gbTop+120)crossesGb=true;
     }
-    if(reduce||crossesGb){
-      var html=document.documentElement,prev=html.style.scrollBehavior;
-      html.style.scrollBehavior='auto';
-      window.scrollTo(0,targetY);
+    if(!crossesGb){
+      window.scrollTo({top:rawTargetY,behavior:'smooth'});
+      if(hash)history.replaceState(null,'',hash);
+      return;
+    }
+    /* collapse 720vh gearbox into 1 screen & freeze its 3D animation during the smooth scroll */
+    var prevBeh=html.style.scrollBehavior;
+    html.style.scrollBehavior='auto';
+    var intro=gb.querySelector('.xp-intro'),ih=intro?intro.offsetHeight:0;
+    var fullH=gb.offsetHeight,startY=window.scrollY;
+    var wasBelow=startY>=gbBot-window.innerHeight-20;
+    var wasSticky=!wasBelow&&startY>=gbTop+ih-nh;
+    window.__gbFrozen=true;
+    gb.classList.add('collapsed');
+    var shortH=gb.offsetHeight,delta=fullH-shortH;
+    if(wasBelow){
+      window.scrollTo(0,Math.max(0,startY-delta));
+      if(window.__snapGearbox)window.__snapGearbox(0);
+    }else if(wasSticky){
+      window.scrollTo(0,Math.max(0,gbTop+ih-nh));
+    }
+    var fromY=window.scrollY,toY=getY(el),dist=toY-fromY;
+    var dur=Math.min(820,Math.max(480,Math.abs(dist)*0.22));
+    var t0=performance.now(),raf=0,done=false;
+    function finish(){
+      if(done)return;done=true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener('wheel',onUser);
+      window.removeEventListener('touchstart',onUser);
+      _jumpCancel=null;
+      var curY=window.scrollY;
+      var curGbTop=gb.getBoundingClientRect().top+curY;
+      gb.classList.remove('collapsed');
+      if(curY>=curGbTop+shortH-nh-40){
+        window.scrollTo(0,curY+delta);
+      }
+      window.__gbFrozen=false;
       if(window.__snapGearbox)window.__snapGearbox();
       if(window.ScrollTrigger)ScrollTrigger.refresh();
-      requestAnimationFrame(function(){html.style.scrollBehavior=prev});
-    }else{
-      window.scrollTo({top:targetY,behavior:'smooth'});
+      html.style.scrollBehavior=prevBeh;
     }
+    function onUser(){finish()}
+    _jumpCancel=finish;
+    window.addEventListener('wheel',onUser,{passive:true,once:true});
+    window.addEventListener('touchstart',onUser,{passive:true,once:true});
+    function step(now){
+      if(done)return;
+      var k=Math.min(1,(now-t0)/dur);
+      var e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+      window.scrollTo(0,fromY+dist*e);
+      if(k<1)raf=requestAnimationFrame(step);else finish();
+    }
+    raf=requestAnimationFrame(step);
     if(hash)history.replaceState(null,'',hash);
   }
   root.addEventListener('click',function(e){
@@ -1269,7 +1324,7 @@ body{margin:0;background:#fff;color:var(--text);font-family:var(--sans);font-siz
   /* fast-track RFQ: jump to the drawing upload */
   var dr=document.getElementById('directRfq');
   if(dr)dr.addEventListener('click',function(e){e.preventDefault();var f=document.getElementById('fFile'),t=document.getElementById('rfq');
-    jumpToEl(t,'#rfq');setTimeout(function(){f.focus({preventScroll:true})},50)});
+    jumpToEl(t,'#rfq');setTimeout(function(){f.focus({preventScroll:true})},reduce?0:850)});
   /* copy CAGE code */
   var toast=document.getElementById('toast'),tt;
   function say(html){toast.innerHTML=html;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600)}
@@ -1764,11 +1819,17 @@ setStep(0);
 const navH=()=>document.querySelector('#witco .nav').offsetHeight;
 let pT=0,pS=0;
 function readProgress(){
+  if(window.__gbFrozen)return;
   const r=xpEl.getBoundingClientRect(),ih=introEl.offsetHeight,span=r.height-ih-(innerHeight-navH());
   pT=clamp01((navH()-r.top-ih)/span);
 }
 addEventListener('scroll',readProgress,{passive:true});addEventListener('resize',readProgress);readProgress();pS=pT;
-window.__snapGearbox=()=>{readProgress();pS=pT;CALLOUTS.forEach(c=>{c.a=0;c.el.style.display='none';c.line.style.display=c.dot.style.display='none'});updateExploded(pS,typeof t==='number'?t:0);xpV.renderer.render(xpV.scene,xpV.camera)};
+window.__snapGearbox=(forceP)=>{
+  if(typeof forceP==='number'){pT=pS=forceP}else{const f=window.__gbFrozen;window.__gbFrozen=false;readProgress();window.__gbFrozen=f;pS=pT}
+  CALLOUTS.forEach(c=>{c.a=0;c.el.style.display='none';c.line.style.display=c.dot.style.display='none'});
+  updateExploded(pS,typeof t==='number'?t:0);
+  xpV.renderer.render(xpV.scene,xpV.camera);
+};
 
 /* camera path (offsets from the look-at target) */
 const CAM=[[0,7,4.6,10.5],[.12,7.8,6,9.6],[.3,9.4,7,10.2],[.48,8.6,4.4,9.6],[.66,8.2,4,10.6],[.84,8.2,4,10.6],[1,7,4.6,10.5]];
@@ -1846,10 +1907,12 @@ function frame(){
   const dt=Math.min(clock.getDelta(),.05);t+=dt;
   if(xpV.visible){
     fit(xpV);
-    pS=reduce?pT:pS+(pT-pS)*Math.min(1,dt*7);
-    updateExploded(pS,t);
-    xpV.renderer.render(xpV.scene,xpV.camera);
-    updateCallouts();
+    if(!window.__gbFrozen){
+      pS=reduce?pT:pS+(pT-pS)*Math.min(1,dt*7);
+      updateExploded(pS,t);
+      xpV.renderer.render(xpV.scene,xpV.camera);
+      updateCallouts();
+    }
   }
 }
 frame();
