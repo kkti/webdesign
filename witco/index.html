@@ -1232,10 +1232,44 @@ body{margin:0;background:#fff;color:var(--text);font-family:var(--sans);font-siz
     m.addEventListener('pointermove',function(e){var r=m.getBoundingClientRect();m.style.setProperty('--mx',(e.clientX-r.left)+'px');m.style.setProperty('--my',(e.clientY-r.top)+'px')});
   });
 
+  /* smart anchor jump: skip smoothly-scrolling across the 720vh pinned gearbox */
+  function jumpToEl(el,hash){
+    if(!el)return;
+    var navEl=root.querySelector('.nav'),nh=navEl?navEl.offsetHeight:72;
+    var targetY=Math.max(0,el.getBoundingClientRect().top+window.scrollY-nh-16);
+    var gb=document.getElementById('gearbox'),crossesGb=false;
+    if(gb&&gb.classList.contains('on')){
+      var gbTop=gb.getBoundingClientRect().top+window.scrollY,gbBot=gbTop+gb.offsetHeight;
+      var lo=Math.min(window.scrollY,targetY),hi=Math.max(window.scrollY,targetY);
+      if(lo<gbBot-nh-40&&hi>gbTop+120)crossesGb=true;
+    }
+    if(reduce||crossesGb){
+      var html=document.documentElement,prev=html.style.scrollBehavior;
+      html.style.scrollBehavior='auto';
+      window.scrollTo(0,targetY);
+      if(window.__snapGearbox)window.__snapGearbox();
+      if(window.ScrollTrigger)ScrollTrigger.refresh();
+      requestAnimationFrame(function(){html.style.scrollBehavior=prev});
+    }else{
+      window.scrollTo({top:targetY,behavior:'smooth'});
+    }
+    if(hash)history.replaceState(null,'',hash);
+  }
+  root.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a||a.id==='directRfq')return;
+    var h=a.getAttribute('href');
+    if(!h||h==='#')return;
+    var el=document.getElementById(h.slice(1));
+    if(!el)return;
+    e.preventDefault();
+    jumpToEl(el,h);
+  });
+
   /* fast-track RFQ: jump to the drawing upload */
   var dr=document.getElementById('directRfq');
   if(dr)dr.addEventListener('click',function(e){e.preventDefault();var f=document.getElementById('fFile'),t=document.getElementById('rfq');
-    t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});setTimeout(function(){f.focus({preventScroll:true})},reduce?0:900);history.replaceState(null,'','#rfq')});
+    jumpToEl(t,'#rfq');setTimeout(function(){f.focus({preventScroll:true})},50)});
   /* copy CAGE code */
   var toast=document.getElementById('toast'),tt;
   function say(html){toast.innerHTML=html;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600)}
@@ -1734,6 +1768,7 @@ function readProgress(){
   pT=clamp01((navH()-r.top-ih)/span);
 }
 addEventListener('scroll',readProgress,{passive:true});addEventListener('resize',readProgress);readProgress();pS=pT;
+window.__snapGearbox=()=>{readProgress();pS=pT;CALLOUTS.forEach(c=>{c.a=0;c.el.style.display='none';c.line.style.display=c.dot.style.display='none'});updateExploded(pS,typeof t==='number'?t:0);xpV.renderer.render(xpV.scene,xpV.camera)};
 
 /* camera path (offsets from the look-at target) */
 const CAM=[[0,7,4.6,10.5],[.12,7.8,6,9.6],[.3,9.4,7,10.2],[.48,8.6,4.4,9.6],[.66,8.2,4,10.6],[.84,8.2,4,10.6],[1,7,4.6,10.5]];
